@@ -1,5 +1,5 @@
 # Tricking Data Science
 
-![](images/cover.png)
+<img src='images/cover.png' height=640 width=400></img>
 
 ### Work in progress...
