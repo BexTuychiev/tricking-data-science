@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 .idea
-.ipynb_checkpoints
+_build
+references.bib
