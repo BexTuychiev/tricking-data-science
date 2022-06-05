@@ -1,5 +1,7 @@
 # Tricking Data Science
 
-<img src='images/cover.png' height=640 width=400></img>
+<p style="text-align:center;">
+    <img src="images/cover.png" width=200 height=320" alt="Tricking data science logo">
+</p>
 
 ### Work in progress...
