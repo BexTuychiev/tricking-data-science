@@ -4,4 +4,4 @@
 format: jb-book
 root: README.md
 chapters:
-- file:
+- file: index.md
