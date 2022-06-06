@@ -3,5 +3,16 @@
 
 format: jb-book
 root: README.md
-chapters:
-- file: index.md
+parts:
+  - caption: Data Manipulation
+    chapters:
+      - file: data_manipulation/index.ipynb
+  - caption: Data Visualization
+    chapters:
+      - file: data_visualization/index.ipynb
+  - caption: Machine Learning
+    chapters:
+      - file: machine_learning/index.ipynb
+  - caption: Deep Learning
+    chapters:
+      - file: deep_learning/index.ipynb
