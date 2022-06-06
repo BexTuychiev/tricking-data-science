@@ -14,6 +14,7 @@ parts:
     chapters:
       - file: data_manipulation/importing_data.ipynb
       - file: data_manipulation/pandas_global.ipynb
+      - file: data_manipulation/datasets.ipynb
   - caption: Data Visualization
     numbered: true
     chapters:
