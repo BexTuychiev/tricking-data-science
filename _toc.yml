@@ -37,5 +37,6 @@ parts:
   - caption: MLOps
     numbered: true
     chapters:
+      - file: mlops/data_version_control.ipynb
       - file: mlops/packaging.ipynb
       - file: mlops/deployment.ipynb
