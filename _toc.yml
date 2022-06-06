@@ -5,24 +5,31 @@ format: jb-book
 root: README.md
 parts:
   - caption: Pure Python
+    numbered: true
     chapters:
       - file: pure_python/python_vs_rest.ipynb
   - caption: Data Manipulation and Analysis
+    numbered: true
     chapters:
       - file: data_manipulation/importing_data.ipynb
   - caption: Data Visualization
+    numbered: true
     chapters:
       - file: data_visualization/matplotlib_tricks.ipynb
       - file: data_visualization/seaborn_tricks.ipynb
   - caption: Machine Learning
+    numbered: true
     chapters:
       - file: machine_learning/feature_engineering.ipynb
   - caption: Deep Learning
+    numbered: true
     chapters:
       - file: deep_learning/index.ipynb
   - caption: Data Science Ecosystem Tools
+    numbered: true
     chapters:
       - file: ecosystem/jupyter_lab.ipynb
   - caption: MLOps
+    numbered: true
     chapters:
       - file: mlops/deployment.ipynb
