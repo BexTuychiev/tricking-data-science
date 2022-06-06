@@ -12,7 +12,8 @@ parts:
       - file: data_manipulation/importing_data.ipynb
   - caption: Data Visualization
     chapters:
-      - file: data_visualization/index.ipynb
+      - file: data_visualization/matplotlib_tricks.ipynb
+      - file: data_visualization/seaborn_tricks.ipynb
   - caption: Machine Learning
     chapters:
       - file: machine_learning/feature_engineering.ipynb
@@ -24,4 +25,4 @@ parts:
       - file: ecosystem/jupyter_lab.ipynb
   - caption: MLOps
     chapters:
-      - file: mlops/index.ipynb
+      - file: mlops/deployment.ipynb
