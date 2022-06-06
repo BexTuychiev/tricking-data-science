@@ -6,7 +6,7 @@ root: README.md
 parts:
   - caption: Pure Python
     chapters:
-      - file: pure_python/index.ipynb
+      - file: pure_python/python_vs_rest.ipynb
   - caption: Data Manipulation and Analysis
     chapters:
       - file: data_manipulation/index.ipynb
@@ -21,7 +21,7 @@ parts:
       - file: deep_learning/index.ipynb
   - caption: Data Science Ecosystem Tools
     chapters:
-      - file: ecosystem/index.ipynb
+      - file: ecosystem/jupyter_lab.ipynb
   - caption: MLOps
     chapters:
       - file: mlops/index.ipynb
