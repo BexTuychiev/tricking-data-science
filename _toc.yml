@@ -34,4 +34,5 @@ parts:
   - caption: MLOps
     numbered: true
     chapters:
+      - file: mlops/packaging.ipynb
       - file: mlops/deployment.ipynb
