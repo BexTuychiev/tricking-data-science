@@ -4,7 +4,10 @@
 format: jb-book
 root: README.md
 parts:
-  - caption: Data Manipulation
+  - caption: Pure Python
+    chapters:
+      - file: pure_python/index.ipynb
+  - caption: Data Manipulation and Analysis
     chapters:
       - file: data_manipulation/index.ipynb
   - caption: Data Visualization
@@ -16,3 +19,9 @@ parts:
   - caption: Deep Learning
     chapters:
       - file: deep_learning/index.ipynb
+  - caption: Data Science Ecosystem Tools
+    chapters:
+      - file: ecosystem/index.ipynb
+  - caption: MLOps
+    chapters:
+      - file: mlops/index.ipynb
