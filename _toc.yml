@@ -9,13 +9,13 @@ parts:
       - file: pure_python/python_vs_rest.ipynb
   - caption: Data Manipulation and Analysis
     chapters:
-      - file: data_manipulation/index.ipynb
+      - file: data_manipulation/importing_data.ipynb
   - caption: Data Visualization
     chapters:
       - file: data_visualization/index.ipynb
   - caption: Machine Learning
     chapters:
-      - file: machine_learning/index.ipynb
+      - file: machine_learning/feature_engineering.ipynb
   - caption: Deep Learning
     chapters:
       - file: deep_learning/index.ipynb
