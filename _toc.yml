@@ -8,10 +8,12 @@ parts:
     numbered: true
     chapters:
       - file: pure_python/python_vs_rest.ipynb
+      - file: pure_python/dictionaries.ipynb
   - caption: Data Manipulation and Analysis
     numbered: true
     chapters:
       - file: data_manipulation/importing_data.ipynb
+      - file: data_manipulation/pandas_global.ipynb
   - caption: Data Visualization
     numbered: true
     chapters:
