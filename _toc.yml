@@ -40,3 +40,4 @@ parts:
       - file: mlops/data_version_control.ipynb
       - file: mlops/packaging.ipynb
       - file: mlops/deployment.ipynb
+      - file: mlops/git.ipynb
