@@ -42,3 +42,7 @@ parts:
       - file: mlops/packaging.ipynb
       - file: mlops/deployment.ipynb
       - file: mlops/git.ipynb
+  - caption: Gem Resources
+    numbered: true
+    chapters:
+      - file: gem_resources/pure_python.ipynb
