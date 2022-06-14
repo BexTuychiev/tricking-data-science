@@ -46,3 +46,5 @@ parts:
     numbered: true
     chapters:
       - file: gem_resources/pure_python.ipynb
+      - file: gem_resources/deep_learning.ipynb
+      - file: gem_resources/statistics.ipynb
