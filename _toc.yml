@@ -50,3 +50,4 @@ parts:
       - file: gem_resources/deep_learning.ipynb
       - file: gem_resources/statistics.ipynb
       - file: gem_resources/math.ipynb
+      - file: gem_resources/datasets.ipynb
