@@ -32,6 +32,10 @@ parts:
     numbered: true
     chapters:
       - file: deep_learning/index.ipynb
+  - caption: Natural Language Processing
+    numbered: true
+    chapters:
+      - file: nlp/spaCy.ipynb
   - caption: Data Science Ecosystem Tools
     numbered: true
     chapters:
