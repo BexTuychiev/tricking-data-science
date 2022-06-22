@@ -28,6 +28,7 @@ parts:
     chapters:
       - file: machine_learning/feature_engineering.ipynb
       - file: machine_learning/sklearn_general.ipynb
+      - file: machine_learning/explainability.ipynb
   - caption: Deep Learning
     numbered: true
     chapters:
