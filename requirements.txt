@@ -1,6 +1,6 @@
-datatable==1.0.0
 matplotlib==3.5.2
 numpy==1.21.6
 pandas==1.1.5
-scikit_learn==1.1.1
+scikit_learn
 seaborn==0.11.2
+jupyterlab
