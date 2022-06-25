@@ -7,53 +7,53 @@ parts:
   - caption: Pure Python
     numbered: true
     chapters:
-      - file: pure_python/python_vs_rest.ipynb
-      - file: pure_python/strings.ipynb
-      - file: pure_python/dictionaries.ipynb
-      - file: pure_python/conditionals.ipynb
-      - file: pure_python/built_in.ipynb
+      - file: book/pure_python/python_vs_rest.ipynb
+      - file: book/pure_python/strings.ipynb
+      - file: book/pure_python/dictionaries.ipynb
+      - file: book/pure_python/conditionals.ipynb
+      - file: book/pure_python/built_in.ipynb
   - caption: Data Manipulation and Analysis
     numbered: true
     chapters:
-      - file: data_manipulation/importing_data.ipynb
-      - file: data_manipulation/pandas_global.ipynb
-      - file: data_manipulation/datasets.ipynb
+      - file: book/data_manipulation/importing_data.ipynb
+      - file: book/data_manipulation/pandas_global.ipynb
+      - file: book/data_manipulation/datasets.ipynb
   - caption: Data Visualization
     numbered: true
     chapters:
-      - file: data_visualization/matplotlib_tricks.ipynb
-      - file: data_visualization/seaborn_tricks.ipynb
+      - file: book/data_visualization/matplotlib_tricks.ipynb
+      - file: book/data_visualization/seaborn_tricks.ipynb
   - caption: Machine Learning
     numbered: true
     chapters:
-      - file: machine_learning/feature_engineering.ipynb
-      - file: machine_learning/sklearn_general.ipynb
-      - file: machine_learning/explainability.ipynb
+      - file: book/machine_learning/feature_engineering.ipynb
+      - file: book/machine_learning/sklearn_general.ipynb
+      - file: book/machine_learning/explainability.ipynb
   - caption: Deep Learning
     numbered: true
     chapters:
-      - file: deep_learning/index.ipynb
+      - file: book/deep_learning/index.ipynb
   - caption: Natural Language Processing
     numbered: true
     chapters:
-      - file: nlp/spaCy.ipynb
+      - file: book/nlp/spaCy.ipynb
   - caption: Data Science Ecosystem Tools
     numbered: true
     chapters:
-      - file: ecosystem/jupyter_lab.ipynb
+      - file: book/ecosystem/jupyter_lab.ipynb
   - caption: MLOps
     numbered: true
     chapters:
-      - file: mlops/data_version_control.ipynb
-      - file: mlops/packaging.ipynb
-      - file: mlops/deployment.ipynb
-      - file: mlops/git.ipynb
+      - file: book/mlops/data_version_control.ipynb
+      - file: book/mlops/packaging.ipynb
+      - file: book/mlops/deployment.ipynb
+      - file: book/mlops/git.ipynb
   - caption: Gem Resources
     numbered: true
     chapters:
-      - file: gem_resources/pure_python.ipynb
-      - file: gem_resources/deep_learning.ipynb
-      - file: gem_resources/statistics.ipynb
-      - file: gem_resources/math.ipynb
-      - file: gem_resources/datasets.ipynb
-      - file: gem_resources/dataviz.ipynb
+      - file: book/gem_resources/pure_python.ipynb
+      - file: book/gem_resources/deep_learning.ipynb
+      - file: book/gem_resources/statistics.ipynb
+      - file: book/gem_resources/math.ipynb
+      - file: book/gem_resources/datasets.ipynb
+      - file: book/gem_resources/dataviz.ipynb
