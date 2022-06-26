@@ -57,3 +57,4 @@ parts:
       - file: book/gem_resources/math.ipynb
       - file: book/gem_resources/datasets.ipynb
       - file: book/gem_resources/dataviz.ipynb
+      - file: book/gem_resources/mlops.ipynb
