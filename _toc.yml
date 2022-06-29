@@ -58,3 +58,4 @@ parts:
       - file: book/gem_resources/datasets.ipynb
       - file: book/gem_resources/dataviz.ipynb
       - file: book/gem_resources/mlops.ipynb
+      - file: book/gem_resources/classic_ml.ipynb
