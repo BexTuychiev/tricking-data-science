@@ -1,5 +1,5 @@
 # Tricking Data Science
 
-![](images/logo.png)
+![](book/images/logo.png)
 
 ## Work in progress...
