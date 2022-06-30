@@ -9,6 +9,7 @@ parts:
       - file: book/pure_python/dictionaries.ipynb
       - file: book/pure_python/conditionals.ipynb
       - file: book/pure_python/built_in.ipynb
+      - file: book/pure_python/utility.ipynb
   - caption: Data Manipulation and Analysis
     numbered: true
     chapters:
@@ -26,6 +27,8 @@ parts:
       - file: book/machine_learning/feature_engineering.ipynb
       - file: book/machine_learning/sklearn_general.ipynb
       - file: book/machine_learning/explainability.ipynb
+      - file: book/machine_learning/codeless_advice.ipynb
+      - file: book/machine_learning/subtle_tricks.ipynb
   - caption: Deep Learning
     numbered: true
     chapters:
@@ -56,3 +59,5 @@ parts:
       - file: book/gem_resources/dataviz.ipynb
       - file: book/gem_resources/mlops.ipynb
       - file: book/gem_resources/classic_ml.ipynb
+      - file: book/gem_resources/command_line.ipynb
+      - file: book/gem_resources/interpretable_ai.ipynb
