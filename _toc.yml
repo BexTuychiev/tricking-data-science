@@ -9,7 +9,7 @@ parts:
       - file: book/pure_python/dictionaries.ipynb
       - file: book/pure_python/conditionals.ipynb
       - file: book/pure_python/built_in.ipynb
-      - file: book/pure_python/utility.ipynb
+      - file: book/pure_python/utilities.ipynb
   - caption: Data Manipulation and Analysis
     numbered: true
     chapters:
