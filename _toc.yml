@@ -22,6 +22,7 @@ parts:
     chapters:
       - file: book/data_visualization/matplotlib_tricks.ipynb
       - file: book/data_visualization/seaborn_tricks.ipynb
+      - file: book/data_visualization/others.ipynb
   - caption: Machine Learning
     numbered: true
     chapters:
