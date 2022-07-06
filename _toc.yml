@@ -63,3 +63,4 @@ parts:
       - file: book/gem_resources/command_line.ipynb
       - file: book/gem_resources/interpretable_ai.ipynb
       - file: book/gem_resources/nlp.ipynb
+      - file: book/gem_resources/non-category.ipynb
