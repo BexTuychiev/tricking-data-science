@@ -9,7 +9,7 @@ logo: book/images/logo.png
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: off
-  exclude_patterns: ["./weekly/*"]
+  exclude_patterns: ["./book/weekly/*"]
 
 # Define the name of the latex output file for PDF builds
 latex:
