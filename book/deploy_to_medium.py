@@ -1,7 +1,7 @@
 import jupyter_to_medium as jtm
 import os
 
-jtm.publish('./drafts/scratch_resources.ipynb',
+jtm.publish('weekly/7.july_3-9.ipynb',
             integration_token=os.environ['TOKEN'],
             pub_name=None,
             title="",
