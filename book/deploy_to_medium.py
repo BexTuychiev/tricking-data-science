@@ -1,7 +1,7 @@
 import jupyter_to_medium as jtm
 import os
 
-jtm.publish('weekly/7.july_3-9.ipynb',
+jtm.publish('weekly/8.july_10-16.ipynb',
             integration_token=os.environ['TOKEN'],
             pub_name=None,
             title="",
