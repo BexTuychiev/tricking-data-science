@@ -31,18 +31,17 @@ parts:
       - file: book/machine_learning/explainability.ipynb
       - file: book/machine_learning/codeless_advice.ipynb
       - file: book/machine_learning/subtle_tricks.ipynb
-  - caption: Deep Learning
-    numbered: true
-    chapters:
-      - file: book/deep_learning/index.ipynb
-  - caption: Natural Language Processing
-    numbered: true
-    chapters:
-      - file: book/nlp/spaCy.ipynb
+      - file: book/machine_learning/ensembling.ipynb
+      - file: book/machine_learning/time_series.ipynb
+#  - caption: Deep Learning
+#    numbered: true
+#    chapters:
+#      - file: book/deep_learning/index.ipynb
   - caption: Data Science Ecosystem Tools
     numbered: true
     chapters:
       - file: book/ecosystem/jupyter_lab.ipynb
+      - file: book/ecosystem/utilities.ipynb
   - caption: MLOps
     numbered: true
     chapters:
@@ -50,6 +49,15 @@ parts:
       - file: book/mlops/packaging.ipynb
       - file: book/mlops/deployment.ipynb
       - file: book/mlops/git.ipynb
+  - caption: Statistics
+    numbered: true
+    chapters:
+      - file: book/statistics/concepts.ipynb
+      - file: book/statistics/numpy_tricks.ipynb
+  - caption: Natural Language Processing
+    numbered: true
+    chapters:
+      - file: book/nlp/spaCy.ipynb
   - caption: Gem Resources
     numbered: true
     chapters:
