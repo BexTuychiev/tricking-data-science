@@ -1,75 +1,64 @@
 format: jb-book
 root: README.md
-parts:
-  - caption: Pure Python
-    numbered: true
-    chapters:
-      - file: book/pure_python/python_vs_rest.ipynb
-      - file: book/pure_python/strings.ipynb
-      - file: book/pure_python/dictionaries.ipynb
-      - file: book/pure_python/control_flow.ipynb
-      - file: book/pure_python/built_in.ipynb
-      - file: book/pure_python/utilities.ipynb
-  - caption: Data Manipulation and Analysis
-    numbered: true
-    chapters:
-      - file: book/data_manipulation/importing_data.ipynb
-      - file: book/data_manipulation/pandas_global.ipynb
-      - file: book/data_manipulation/datasets.ipynb
-      - file: book/data_manipulation/time_series.ipynb
-  - caption: Data Visualization
-    numbered: true
-    chapters:
-      - file: book/data_visualization/matplotlib_tricks.ipynb
-      - file: book/data_visualization/seaborn_tricks.ipynb
-      - file: book/data_visualization/others.ipynb
-  - caption: Machine Learning
-    numbered: true
-    chapters:
-      - file: book/machine_learning/feature_engineering.ipynb
-      - file: book/machine_learning/sklearn_general.ipynb
-      - file: book/machine_learning/explainability.ipynb
-      - file: book/machine_learning/codeless_advice.ipynb
-      - file: book/machine_learning/subtle_tricks.ipynb
-      - file: book/machine_learning/ensembling.ipynb
-      - file: book/machine_learning/time_series.ipynb
-#  - caption: Deep Learning
-#    numbered: true
-#    chapters:
-#      - file: book/deep_learning/index.ipynb
-  - caption: Data Science Ecosystem Tools
-    numbered: true
-    chapters:
-      - file: book/ecosystem/jupyter_lab.ipynb
-      - file: book/ecosystem/utilities.ipynb
-  - caption: MLOps
-    numbered: true
-    chapters:
-      - file: book/mlops/data_version_control.ipynb
-      - file: book/mlops/packaging.ipynb
-      - file: book/mlops/deployment.ipynb
-      - file: book/mlops/git.ipynb
-  - caption: Statistics
-    numbered: true
-    chapters:
-      - file: book/statistics/concepts.ipynb
-      - file: book/statistics/numpy_tricks.ipynb
-  - caption: Natural Language Processing
-    numbered: true
-    chapters:
-      - file: book/nlp/spaCy.ipynb
-  - caption: Gem Resources
-    numbered: true
-    chapters:
-      - file: book/gem_resources/pure_python.ipynb
-      - file: book/gem_resources/deep_learning.ipynb
-      - file: book/gem_resources/statistics.ipynb
-      - file: book/gem_resources/math.ipynb
-      - file: book/gem_resources/datasets.ipynb
-      - file: book/gem_resources/dataviz.ipynb
-      - file: book/gem_resources/mlops.ipynb
-      - file: book/gem_resources/classic_ml.ipynb
-      - file: book/gem_resources/command_line.ipynb
-      - file: book/gem_resources/interpretable_ai.ipynb
-      - file: book/gem_resources/nlp.ipynb
-      - file: book/gem_resources/non-category.ipynb
+options:
+  numbered: True
+chapters:
+  - file: book/pure_python/index.ipynb
+    sections:
+    - file: book/pure_python/python_vs_rest.ipynb
+    - file: book/pure_python/strings.ipynb
+    - file: book/pure_python/dictionaries.ipynb
+    - file: book/pure_python/control_flow.ipynb
+    - file: book/pure_python/built_in.ipynb
+    - file: book/pure_python/utilities.ipynb
+  - file: book/data_manipulation/index.ipynb
+    sections:
+    - file: book/data_manipulation/importing_data.ipynb
+    - file: book/data_manipulation/pandas_global.ipynb
+    - file: book/data_manipulation/datasets.ipynb
+    - file: book/data_manipulation/time_series.ipynb
+  - file: book/data_visualization/index.ipynb
+    sections:
+    - file: book/data_visualization/matplotlib_tricks.ipynb
+    - file: book/data_visualization/seaborn_tricks.ipynb
+    - file: book/data_visualization/others.ipynb
+  - file: book/machine_learning/index.ipynb
+    sections:
+    - file: book/machine_learning/feature_engineering.ipynb
+    - file: book/machine_learning/sklearn_general.ipynb
+    - file: book/machine_learning/explainability.ipynb
+    - file: book/machine_learning/codeless_advice.ipynb
+    - file: book/machine_learning/subtle_tricks.ipynb
+    - file: book/machine_learning/ensembling.ipynb
+    - file: book/machine_learning/time_series.ipynb
+  - file: book/mlops/index.ipynb
+    sections:
+    - file: book/mlops/data_version_control.ipynb
+    - file: book/mlops/packaging.ipynb
+    - file: book/mlops/deployment.ipynb
+    - file: book/mlops/git.ipynb
+  - file: book/ecosystem/index.ipynb
+    sections:
+    - file: book/ecosystem/jupyter_lab.ipynb
+    - file: book/ecosystem/utilities.ipynb
+  - file: book/statistics/index.ipynb
+    sections:
+    - file: book/statistics/concepts.ipynb
+    - file: book/statistics/numpy_tricks.ipynb
+  - file: book/nlp/index.ipynb
+    sections:
+    - file: book/nlp/spaCy.ipynb
+  - file: book/gem_resources/index.ipynb
+    sections:
+    - file: book/gem_resources/pure_python.ipynb
+    - file: book/gem_resources/deep_learning.ipynb
+    - file: book/gem_resources/statistics.ipynb
+    - file: book/gem_resources/math.ipynb
+    - file: book/gem_resources/datasets.ipynb
+    - file: book/gem_resources/dataviz.ipynb
+    - file: book/gem_resources/mlops.ipynb
+    - file: book/gem_resources/classic_ml.ipynb
+    - file: book/gem_resources/command_line.ipynb
+    - file: book/gem_resources/interpretable_ai.ipynb
+    - file: book/gem_resources/nlp.ipynb
+    - file: book/gem_resources/non-category.ipynb
