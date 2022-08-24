@@ -3,6 +3,7 @@ root: README.md
 options:
   numbered: True
 chapters:
+  - file: REAMDE.md
   - file: book/pure_python/index.ipynb
     sections:
 #    - file: book/pure_python/python_vs_rest.ipynb

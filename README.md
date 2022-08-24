@@ -1,9 +1,20 @@
+<a href="https://github.com/BexTuychiev/tricking-data-science">
+
 <img src="book/images/cover.png" alt="Tricking Data Science Book Logo" width="126" height="195" align="center">
+
+</a>
+
+<div align="center">
+    <h1 align="center">Tricking Data Science</h1>
+</div>
 
 <div align="center">
 
-<h1 align="center">Tricking Data Science</h1>
+[![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/BexTuychiev/tricking-data-science) [![View Book](https://img.shields.io/badge/Book-View%20Book-red?style=plastic&logo=book)](https://bextuychiev.github.io/tricking-data-science/README.html)
 
+</div>
+
+<div align="center">
   <p align="center">
     Subtle code tricks and gem resources for all things data, machine learning and deep learning.
   </p>
@@ -71,3 +82,5 @@ Follow: [Medium](https://ibexorigin.medium.com/)
 , [LinkedIn](https://www.linkedin.com/in/bextuychiev/)
 , [Twitter](https://twitter.com/BexTuychiev), [GitHub](https://github.com/BexTuychiev)
 , [Kaggle](https://www.kaggle.com/bextuychiev)
+
+###### Ⓒ Tricking Data Science
