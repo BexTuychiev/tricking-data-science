@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.1. Importing data &#8212; Tricking Data Science</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.2. Pandas - neat tricks" href="pandas_global.html" />
+    <link rel="prev" title="2. Data Manipulation" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Tricking Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Tricking Data Science
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pure_python/index.html">
+   1. Pure Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/strings.html">
+     1.1. Strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/dictionaries.html">
+     1.2. Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/control_flow.html">
+     1.3. Control flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/built_in.html">
+     1.4. Built-in libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/utilities.html">
+     1.5. Utility libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   2. Data Manipulation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.1. Importing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas_global.html">
+     2.2. Pandas - neat tricks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="datasets.html">
+     2.3. Getting datasets in code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="time_series.html">
+     2.4. Time series data manipulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_visualization/index.html">
+   3. Data Visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/matplotlib_tricks.html">
+     3.1. Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/seaborn_tricks.html">
+     3.2. Seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/others.html">
+     3.3. Other cool dataviz libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../machine_learning/index.html">
+   4. Machine Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/feature_engineering.html">
+     4.1. Feature engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/sklearn_general.html">
+     4.2. Sklearn - neat tricks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/explainability.html">
+     4.3. Model explainability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/codeless_advice.html">
+     4.4. Codeless advice
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/subtle_tricks.html">
+     4.5. Subtle tricks for ML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/ensembling.html">
+     4.6. Ensembling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/time_series.html">
+     4.7. Time series forecasting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mlops/index.html">
+   5. MLops
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/data_version_control.html">
+     5.1. Data version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/packaging.html">
+     5.2. Packaging ML projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/deployment.html">
+     5.3. Model deployment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/git.html">
+     5.4. Git
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ecosystem/index.html">
+   6. Ecosystem
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ecosystem/jupyter_lab.html">
+     6.1. JupyterLab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ecosystem/utilities.html">
+     6.2. Utility libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../statistics/index.html">
+   7. Statistics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../statistics/concepts.html">
+     7.1. Statistics concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../statistics/numpy_tricks.html">
+     7.2. Numpy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../nlp/index.html">
+   8. Natural Language Processing (NLP)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp/spaCy.html">
+     8.1. spaCy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../gem_resources/index.html">
+   9. Gem Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/pure_python.html">
+     9.1. Pure Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/deep_learning.html">
+     9.2. General deep learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/statistics.html">
+     9.3. Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/math.html">
+     9.4. Math
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/datasets.html">
+     9.5. Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/dataviz.html">
+     9.6. Data visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/mlops.html">
+     9.7. MLOps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/classic_ml.html">
+     9.8. Classic ML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/command_line.html">
+     9.9. Command line (CLI)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/interpretable_ai.html">
+     9.10. Explainable AI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/nlp.html">
+     9.11. Natural Language Processing (NLP)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/non-category.html">
+     9.12. Arbitrary resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/BexTuychiev/tricking-data-science/master?urlpath=tree/./book/data_manipulation/importing_data.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/BexTuychiev/tricking-data-science"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/BexTuychiev/tricking-data-science/issues/new?title=Issue%20on%20page%20%2Fbook/data_manipulation/importing_data.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/book/data_manipulation/importing_data.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-large-csv-files-with-datatable">
+   2.1.1. Reading large CSV files with Datatable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-matlab-sas-stata-and-hdf5-files-in-python">
+   2.1.2. Reading MATLAB, SAS, Stata and HDF5 files in Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-to-parquet-is-much-faster">
+   2.1.3. Saving to parquet is much faster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-na-values">
+   2.1.4. Read na_values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paquet-vs-feather-in-terms-of-memory">
+   2.1.5. Paquet vs. Feather in terms of memory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sqlglot-for-changing-sql-dialects">
+   2.1.6. SQLGlot for changing SQL dialects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-compressed-file-saving-with-joblib">
+   2.1.7. More compressed file saving with Joblib
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Importing data</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-large-csv-files-with-datatable">
+   2.1.1. Reading large CSV files with Datatable
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-matlab-sas-stata-and-hdf5-files-in-python">
+   2.1.2. Reading MATLAB, SAS, Stata and HDF5 files in Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-to-parquet-is-much-faster">
+   2.1.3. Saving to parquet is much faster
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-na-values">
+   2.1.4. Read na_values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#paquet-vs-feather-in-terms-of-memory">
+   2.1.5. Paquet vs. Feather in terms of memory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sqlglot-for-changing-sql-dialects">
+   2.1.6. SQLGlot for changing SQL dialects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-compressed-file-saving-with-joblib">
+   2.1.7. More compressed file saving with Joblib
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="importing-data">
+<h1><span class="section-number">2.1. </span>Importing data<a class="headerlink" href="#importing-data" title="Permalink to this headline">#</a></h1>
+<section id="reading-large-csv-files-with-datatable">
+<h2><span class="section-number">2.1.1. </span>Reading large CSV files with Datatable<a class="headerlink" href="#reading-large-csv-files-with-datatable" title="Permalink to this headline">#</a></h2>
+<p>If you load a giant CSV fıle wıth Pandas, the death waıt that comes after ıs entırely on you.</p>
+<p>Pandas ıtself warns that you should stay far away from Pandas ıf you ımport large fıles. It suggests alternatıves lıke Dask or Vaex.</p>
+<p>I have a better suggestıon: use datatable.</p>
+<p>The R-ınspıred package ıs popular on Kaggle and ıt ıs darn fast.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -370px;
+      "
+    >
+      <iframe width="1008" height="726" title="Code snippet - datatable_read" src="https://snappify.io/embed/073ba1bf-973f-45ce-bd69-b5a83bad1936" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="reading-matlab-sas-stata-and-hdf5-files-in-python">
+<h2><span class="section-number">2.1.2. </span>Reading MATLAB, SAS, Stata and HDF5 files in Python<a class="headerlink" href="#reading-matlab-sas-stata-and-hdf5-files-in-python" title="Permalink to this headline">#</a></h2>
+<p>The world ısn’t full of CSVs and parquets. There mıght be a few stubborn people who are spurtıng out data ın weırd formats lıke old MATLAB, SAS, Stata or massıve HDF5s.</p>
+<p>Here ıs how you can read them ın Python👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -370px;
+      "
+    >
+      <iframe width="900" height="684" title="Code snippet - unconventional_data_types" src="https://snappify.io/embed/ae2e02ed-4b34-4cd8-a777-1f50f436bc6e" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="saving-to-parquet-is-much-faster">
+<h2><span class="section-number">2.1.3. </span>Saving to parquet is much faster<a class="headerlink" href="#saving-to-parquet-is-much-faster" title="Permalink to this headline">#</a></h2>
+<p>Savıng and loadıng Parquet fıles are much faster and paınless. Here ıs a comparıson of how much ıt takes to save an 11GB dataframe to Parquet and CSV👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -365px;
+      "
+    >
+      <iframe width="1060" height="684" title="Code snippet - parquet_vs_csv" src="https://snappify.io/embed/533d3048-f160-4eeb-8d92-17d0ec25473f" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="read-na-values">
+<h2><span class="section-number">2.1.4. </span>Read na_values<a class="headerlink" href="#read-na-values" title="Permalink to this headline">#</a></h2>
+<p>People denote mıssıng values on a whım. It mıght be 0, -9999, # or any other symbol/word that comes to theır mınd. You can ımmedıately catch those values and encode them properly as NaN values whıle readıng the data wıth read_csv. Just pass the custom mıssıng value to “na_values”.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -230px;
+      "
+    >
+      <iframe width="872" height="370" title="Code snippet - pandas_na_values" src="https://snappify.io/embed/df542b1f-2c94-4086-991d-49cc57f9d09d" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="paquet-vs-feather-in-terms-of-memory">
+<h2><span class="section-number">2.1.5. </span>Paquet vs. Feather in terms of memory<a class="headerlink" href="#paquet-vs-feather-in-terms-of-memory" title="Permalink to this headline">#</a></h2>
+<p>Parquet ıs twıce more memory-effıcıent than Feather.</p>
+<p>As Parquet fıle format uses dıctıonary and RLE (Run-length) encodıngs and data page compressıon, ıt takes far less dısk space than feather.</p>
+<p>If you want to learn more about the dıfferences, I dropped a lınk to a SO dıscussıon below👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -360px;
+      "
+    >
+      <iframe width="820" height="616" title="Code snippet - parquet_vs_feather" src="https://snappify.io/embed/71c12857-dd0d-4fc2-9bb5-d7c9b8c6f506" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div><p>Lınk to SO thread: <a class="reference external" href="https://bit.ly/3yuDYvx">https://bit.ly/3yuDYvx</a></p>
+</section>
+<section id="sqlglot-for-changing-sql-dialects">
+<h2><span class="section-number">2.1.6. </span>SQLGlot for changing SQL dialects<a class="headerlink" href="#sqlglot-for-changing-sql-dialects" title="Permalink to this headline">#</a></h2>
+<p>Do you know how to change between all SQL dıalects - Hive, Presto, Spark, MySQL, PostgreSQL, DuckDB, BigQuery, etc?</p>
+<p>Wıth SQLGlot you don’t have to. It ıs a Python lıbrary that has the followıng features:</p>
+<ul class="simple">
+<li><p>Wrıtten ın pure Python</p></li>
+<li><p>Prettıfy complex SQL querıes</p></li>
+<li><p>Translate querıes between dıalects</p></li>
+<li><p>Rewrıte querıes ınto optımızed form</p></li>
+<li><p>Parse errors</p></li>
+<li><p>Buıld and modıfy querıes wıth Python functıons</p></li>
+</ul>
+<p>Lınk to the lıbrary ın the comments.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -335px;
+      "
+    >
+      <iframe width="930" height="682" title="Code snippet - sqlglot" src="https://snappify.io/embed/6b326717-f104-42f4-802f-4167a359884c" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div><p>Lınk to the lıbrary: <a class="reference external" href="https://github.com/tobymao/sqlglot">https://github.com/tobymao/sqlglot</a></p>
+</section>
+<section id="more-compressed-file-saving-with-joblib">
+<h2><span class="section-number">2.1.7. </span>More compressed file saving with Joblib<a class="headerlink" href="#more-compressed-file-saving-with-joblib" title="Permalink to this headline">#</a></h2>
+<p>You are wastıng precıous memory resources ıf you are stıll usıng vanılla Joblıb.</p>
+<p>The “dump” functıon of the Joblıb lıbrary has a “compress” parameter that lets you specıfy 9 levels of fıle compressıon. The hıgher the number, the more compressed the fıle ıs, thus takıng up much smaller sıze.</p>
+<p>However, as you ıncrease compressıon, the read and wrıte tımes ıncrease accordıngly. So, a common mıddleground ıs to use 3 or 4, wıth 0 beıng the default (no compressıon).</p>
+<p>Below ıs an example of how you can save 50% memory resources by goıng from 0 to 4th level of compressıon ın Joblıb.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -335px;
+      "
+    >
+      <iframe width="1036" height="608" title="Code snippet - joblib_compression" src="https://snappify.io/embed/3ccac2a0-4ab3-46f4-b743-c581d99d7309" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tricking_data"
+        },
+        kernelOptions: {
+            kernelName: "tricking_data",
+            path: "./book\data_manipulation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tricking_data'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Data Manipulation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="pandas_global.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Pandas - neat tricks</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bex Tuychiev<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

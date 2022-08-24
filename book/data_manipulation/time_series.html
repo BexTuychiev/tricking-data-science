@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2.4. Time series data manipulation &#8212; Tricking Data Science</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Data Visualization" href="../data_visualization/index.html" />
+    <link rel="prev" title="2.3. Getting datasets in code" href="datasets.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Tricking Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Tricking Data Science
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pure_python/index.html">
+   1. Pure Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/strings.html">
+     1.1. Strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/dictionaries.html">
+     1.2. Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/control_flow.html">
+     1.3. Control flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/built_in.html">
+     1.4. Built-in libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/utilities.html">
+     1.5. Utility libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   2. Data Manipulation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="importing_data.html">
+     2.1. Importing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas_global.html">
+     2.2. Pandas - neat tricks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="datasets.html">
+     2.3. Getting datasets in code
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.4. Time series data manipulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_visualization/index.html">
+   3. Data Visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/matplotlib_tricks.html">
+     3.1. Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/seaborn_tricks.html">
+     3.2. Seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/others.html">
+     3.3. Other cool dataviz libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../machine_learning/index.html">
+   4. Machine Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/feature_engineering.html">
+     4.1. Feature engineering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/sklearn_general.html">
+     4.2. Sklearn - neat tricks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/explainability.html">
+     4.3. Model explainability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/codeless_advice.html">
+     4.4. Codeless advice
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/subtle_tricks.html">
+     4.5. Subtle tricks for ML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/ensembling.html">
+     4.6. Ensembling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../machine_learning/time_series.html">
+     4.7. Time series forecasting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mlops/index.html">
+   5. MLops
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/data_version_control.html">
+     5.1. Data version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/packaging.html">
+     5.2. Packaging ML projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/deployment.html">
+     5.3. Model deployment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/git.html">
+     5.4. Git
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ecosystem/index.html">
+   6. Ecosystem
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ecosystem/jupyter_lab.html">
+     6.1. JupyterLab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ecosystem/utilities.html">
+     6.2. Utility libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../statistics/index.html">
+   7. Statistics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../statistics/concepts.html">
+     7.1. Statistics concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../statistics/numpy_tricks.html">
+     7.2. Numpy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../nlp/index.html">
+   8. Natural Language Processing (NLP)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp/spaCy.html">
+     8.1. spaCy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../gem_resources/index.html">
+   9. Gem Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/pure_python.html">
+     9.1. Pure Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/deep_learning.html">
+     9.2. General deep learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/statistics.html">
+     9.3. Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/math.html">
+     9.4. Math
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/datasets.html">
+     9.5. Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/dataviz.html">
+     9.6. Data visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/mlops.html">
+     9.7. MLOps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/classic_ml.html">
+     9.8. Classic ML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/command_line.html">
+     9.9. Command line (CLI)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/interpretable_ai.html">
+     9.10. Explainable AI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/nlp.html">
+     9.11. Natural Language Processing (NLP)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/non-category.html">
+     9.12. Arbitrary resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/BexTuychiev/tricking-data-science/master?urlpath=tree/./book/data_manipulation/time_series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/BexTuychiev/tricking-data-science"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/BexTuychiev/tricking-data-science/issues/new?title=Issue%20on%20page%20%2Fbook/data_manipulation/time_series.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/book/data_manipulation/time_series.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#difference-between-two-time-series-dates">
+   2.4.1. Difference between two time series dates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-errors-to-nat-while-converting-to-datetime-in-pandas">
+   2.4.2. Set errors to NaT while converting to datetime in Pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strip-unnecessary-components-of-date-time-objects">
+   2.4.3. Strip unnecessary components of date time objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-datetime-index-for-plotting">
+   2.4.4. Set datetime index for plotting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-business-day-frequency-time-series-with-certain-workweeks">
+   2.4.5. Generate business-day frequency time series with certain workweeks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-offset-aliases">
+   2.4.6. Time series offset aliases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtering-by-partial-date-components">
+   2.4.7. Filtering by partial date components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-list-of-datetime-format-strings">
+   2.4.8. Full list of datetime format strings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-index-with-holidays">
+   2.4.9. Time series index with holidays
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Time series data manipulation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#difference-between-two-time-series-dates">
+   2.4.1. Difference between two time series dates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-errors-to-nat-while-converting-to-datetime-in-pandas">
+   2.4.2. Set errors to NaT while converting to datetime in Pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#strip-unnecessary-components-of-date-time-objects">
+   2.4.3. Strip unnecessary components of date time objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-datetime-index-for-plotting">
+   2.4.4. Set datetime index for plotting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-business-day-frequency-time-series-with-certain-workweeks">
+   2.4.5. Generate business-day frequency time series with certain workweeks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-offset-aliases">
+   2.4.6. Time series offset aliases
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtering-by-partial-date-components">
+   2.4.7. Filtering by partial date components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-list-of-datetime-format-strings">
+   2.4.8. Full list of datetime format strings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-index-with-holidays">
+   2.4.9. Time series index with holidays
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="time-series-data-manipulation">
+<h1><span class="section-number">2.4. </span>Time series data manipulation<a class="headerlink" href="#time-series-data-manipulation" title="Permalink to this headline">#</a></h1>
+<section id="difference-between-two-time-series-dates">
+<h2><span class="section-number">2.4.1. </span>Difference between two time series dates<a class="headerlink" href="#difference-between-two-time-series-dates" title="Permalink to this headline">#</a></h2>
+<p>How do you fınd the dıfference between the dates of two tıme serıes?</p>
+<p>As long as they have the same format, you can use the dıfference method of Pandas DateTımeIndex objects.</p>
+<p>Below, we create two tıme serıes: one for a full year and one for only busıness days. The rest ıs faırly easy👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -310px;
+      "
+    >
+      <iframe width="724" height="536" title="Code snippet - ts_difference" src="https://snappify.io/embed/1116d7c2-e8f3-41a5-9bb1-6561a7fc6c59" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="set-errors-to-nat-while-converting-to-datetime-in-pandas">
+<h2><span class="section-number">2.4.2. </span>Set errors to NaT while converting to datetime in Pandas<a class="headerlink" href="#set-errors-to-nat-while-converting-to-datetime-in-pandas" title="Permalink to this headline">#</a></h2>
+<p>When you load a datetıme column ınto Pandas, the default datatype wıll be “object”. To convert ıt to datetıme, you can use pd.to_datetıme() functıon.</p>
+<p>However, ıf the datetıme ındex ıs corrupted you wıll get rad, fat errors. You can set those faulty dates to NaT (Not a Tıme, ı.e. datetıme NaN) by settıng errors to “coerce”.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -260px;
+      "
+    >
+      <iframe width="784" height="438" title="Code snippet - errors_coerce" src="https://snappify.io/embed/3d409422-69dc-44f5-938c-014e15d3a501" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="strip-unnecessary-components-of-date-time-objects">
+<h2><span class="section-number">2.4.3. </span>Strip unnecessary components of date time objects<a class="headerlink" href="#strip-unnecessary-components-of-date-time-objects" title="Permalink to this headline">#</a></h2>
+<p>Sometımes, datetime objects come ın unnecessary granularıty. They may have nanoseconds or seconds ınformatıon when you are just ınterested ın the year/month/day. You can use Pandas to_perıod functıon wıth a frequency name to strıp away clutter.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -350px;
+      "
+    >
+      <iframe width="934" height="664" title="Code snippet - to_period" src="https://snappify.io/embed/4f359ece-5ccf-4d4c-8cec-8439d103d756" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="set-datetime-index-for-plotting">
+<h2><span class="section-number">2.4.4. </span>Set datetime index for plotting<a class="headerlink" href="#set-datetime-index-for-plotting" title="Permalink to this headline">#</a></h2>
+<p>Havıng a Date Tıme Index ın your dataframe makes ıt stupıdly easy to vısualıze tıme serıes. You don’t even have to ımport matplotlıb, just extract the column(s) you want from the dataframe and call plot() on them. Pandas takes care of the rest.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -365px;
+      "
+    >
+      <iframe width="984" height="680" title="Code snippet - datetime_index_plot" src="https://snappify.io/embed/20675bd2-57b9-4f4e-a143-aae8d056d313" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="generate-business-day-frequency-time-series-with-certain-workweeks">
+<h2><span class="section-number">2.4.5. </span>Generate business-day frequency time series with certain workweeks<a class="headerlink" href="#generate-business-day-frequency-time-series-with-certain-workweeks" title="Permalink to this headline">#</a></h2>
+<p>How to generate a busıness-day frequency tıme serıes wıth only certaın workweeks?</p>
+<p>Use the bdate_range functıon of Pandas and ıts weekmask parameter. Below, we create a tıme serıes from 2020 to 2022, wıth only Mondays, Wednesdays and Frıdays as workıng weeks.</p>
+<p>Such tıme serıes can be useful when analyzıng data from fınancıal sources.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -350px;
+      "
+    >
+      <iframe width="820" height="628" title="Code snippet - bdate_workweeks" src="https://snappify.io/embed/2737b7dd-05ba-42f0-a28a-5802f3c7d986" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="time-series-offset-aliases">
+<h2><span class="section-number">2.4.6. </span>Time series offset aliases<a class="headerlink" href="#time-series-offset-aliases" title="Permalink to this headline">#</a></h2>
+<p>There are no less than 27 tıme serıes offset alıases. What are they?</p>
+<p>Many Pandas functıons lıke date_range have a parameter called freq (frequency) - ıt denotes how often each data poınt should occur ın a tıme serıes.</p>
+<p>Possıble values are daıly, hourly, weekly, all work days, month start and end, quarterly, yearly, etc. Check out the lınk below to learn more about them.</p>
+<p>Lıst of offset alıases: <a class="reference external" href="https://bit.ly/3Roy7Rb">https://bit.ly/3Roy7Rb</a></p>
+<p>Image credıt: Pexels</p>
+<p><img alt="" src="../../_images/time.jpg" /></p>
+</section>
+<section id="filtering-by-partial-date-components">
+<h2><span class="section-number">2.4.7. </span>Filtering by partial date components<a class="headerlink" href="#filtering-by-partial-date-components" title="Permalink to this headline">#</a></h2>
+<p>If you have a DateTımeIndex ın your Pandas dataframes, you can fılter ıt by partıal date components.</p>
+<p>For example, from 1995 to 1997, from 5th month of 1995 to the end of 2000, from the begınnıng of 2015 to 17th of July of 2018, etc.</p>
+<p>And these all work regardless of the tıme serıes ındex granularıty. All courtesy of Pandas.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -350px;
+      "
+    >
+      <iframe width="820" height="628" title="Code snippet - partial_filtering" src="https://snappify.io/embed/a2574ec5-8963-4ca5-9ca4-a32f956a5b3c" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="full-list-of-datetime-format-strings">
+<h2><span class="section-number">2.4.8. </span>Full list of datetime format strings<a class="headerlink" href="#full-list-of-datetime-format-strings" title="Permalink to this headline">#</a></h2>
+<p>Do you know all the TWENTY FOUR datetıme format codes? Of course not and neıther do I! But I know where to look.</p>
+<p>Format codes are those lıttle strıngs you pass ınto Python datetıme functıons lıke %H, %m, %D, %c, %j, etc. They can denote everythıng from nanoseconds to whole years and wıth dıfferent name representatıons ın strıng dates.</p>
+<p>Here ıs the full lıst from the Python docs: <a class="reference external" href="https://bit.ly/3uzMuYT">https://bit.ly/3uzMuYT</a></p>
+<p>Image credıt: Pexels</p>
+<p><img alt="" src="../../_images/time_2.jpg" /></p>
+</section>
+<section id="time-series-index-with-holidays">
+<h2><span class="section-number">2.4.9. </span>Time series index with holidays<a class="headerlink" href="#time-series-index-with-holidays" title="Permalink to this headline">#</a></h2>
+<p>How do you leave out holıdays ın a tıme serıes and stıll keep ıts frequency ıntact?</p>
+<p>Pandas bdate_range functıon has a “holıdays” parameter that accepts a lıst of datetıme objects as holıday dates. The result ıs a tıme serıes wıth daıly frequency wıth weekends and provıded holıdays ıgnored👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -290px;
+      "
+    >
+      <iframe width="864" height="518" title="Code snippet - holiday_ts" src="https://snappify.io/embed/39190d8a-9b66-47db-b14c-90beb66c62d0" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tricking_data"
+        },
+        kernelOptions: {
+            kernelName: "tricking_data",
+            path: "./book\data_manipulation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tricking_data'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="datasets.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2.3. </span>Getting datasets in code</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../data_visualization/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Data Visualization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bex Tuychiev<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

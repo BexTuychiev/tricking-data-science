@@ -1,0 +1,1171 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4.2. Sklearn - neat tricks &#8212; Tricking Data Science</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.3. Model explainability" href="explainability.html" />
+    <link rel="prev" title="4.1. Feature engineering" href="feature_engineering.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Tricking Data Science</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Tricking Data Science
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../pure_python/index.html">
+   1. Pure Python
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/strings.html">
+     1.1. Strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/dictionaries.html">
+     1.2. Dictionaries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/control_flow.html">
+     1.3. Control flow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/built_in.html">
+     1.4. Built-in libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../pure_python/utilities.html">
+     1.5. Utility libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_manipulation/index.html">
+   2. Data Manipulation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_manipulation/importing_data.html">
+     2.1. Importing data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_manipulation/pandas_global.html">
+     2.2. Pandas - neat tricks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_manipulation/datasets.html">
+     2.3. Getting datasets in code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_manipulation/time_series.html">
+     2.4. Time series data manipulation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../data_visualization/index.html">
+   3. Data Visualization
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/matplotlib_tricks.html">
+     3.1. Matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/seaborn_tricks.html">
+     3.2. Seaborn
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../data_visualization/others.html">
+     3.3. Other cool dataviz libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   4. Machine Learning
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="feature_engineering.html">
+     4.1. Feature engineering
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     4.2. Sklearn - neat tricks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="explainability.html">
+     4.3. Model explainability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="codeless_advice.html">
+     4.4. Codeless advice
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="subtle_tricks.html">
+     4.5. Subtle tricks for ML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ensembling.html">
+     4.6. Ensembling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="time_series.html">
+     4.7. Time series forecasting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mlops/index.html">
+   5. MLops
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/data_version_control.html">
+     5.1. Data version control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/packaging.html">
+     5.2. Packaging ML projects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/deployment.html">
+     5.3. Model deployment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mlops/git.html">
+     5.4. Git
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ecosystem/index.html">
+   6. Ecosystem
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ecosystem/jupyter_lab.html">
+     6.1. JupyterLab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ecosystem/utilities.html">
+     6.2. Utility libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../statistics/index.html">
+   7. Statistics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../statistics/concepts.html">
+     7.1. Statistics concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../statistics/numpy_tricks.html">
+     7.2. Numpy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../nlp/index.html">
+   8. Natural Language Processing (NLP)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../nlp/spaCy.html">
+     8.1. spaCy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../gem_resources/index.html">
+   9. Gem Resources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/pure_python.html">
+     9.1. Pure Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/deep_learning.html">
+     9.2. General deep learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/statistics.html">
+     9.3. Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/math.html">
+     9.4. Math
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/datasets.html">
+     9.5. Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/dataviz.html">
+     9.6. Data visualization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/mlops.html">
+     9.7. MLOps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/classic_ml.html">
+     9.8. Classic ML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/command_line.html">
+     9.9. Command line (CLI)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/interpretable_ai.html">
+     9.10. Explainable AI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/nlp.html">
+     9.11. Natural Language Processing (NLP)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gem_resources/non-category.html">
+     9.12. Arbitrary resources
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/BexTuychiev/tricking-data-science/master?urlpath=tree/./book/machine_learning/sklearn_general.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/BexTuychiev/tricking-data-science"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/BexTuychiev/tricking-data-science/issues/new?title=Issue%20on%20page%20%2Fbook/machine_learning/sklearn_general.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/book/machine_learning/sklearn_general.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-pipeline-and-make-column-transformer-shorter-pipelines">
+   4.2.1.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     make_pipeline
+    </span>
+   </code>
+   and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     make_column_transformer
+    </span>
+   </code>
+   - shorter pipelines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-and-class-transformer-for-custom-preprocessing-steps">
+   4.2.2. Function and class transformer for custom preprocessing steps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choose-columns-automatically-with-make-column-selector">
+   4.2.3. Choose columns automatically with make_column_selector
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-on-multi-class-problems">
+   4.2.4. Logistic Regression on multi-class problems?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confusionmatrix-display-for-better-confusion-matrix">
+   4.2.5. ConfusionMatrix display for better confusion matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#text-representation-of-a-decision-tree">
+   4.2.6. Text representation of a decision tree
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#default-rmse-in-sklearn">
+   4.2.7. Default RMSE in Sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-decision-trees-in-sklearn">
+   4.2.8. Plotting decision trees in Sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rule-of-thumb-for-fit-predict-fit-transform">
+   4.2.9. Rule of thumb for fit/predict/fit_transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-difference-between-micro-macro-weighted-averages">
+   4.2.10. The difference between micro, macro, weighted averages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-a-scorer-object-from-just-the-name">
+   4.2.11. Getting a scorer object from just the name
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-all-scorer-s-names-in-sklearn">
+   4.2.12. Get all scorer’s names in Sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-roc-curve-without-generating-predictions">
+   4.2.13. Displaying ROC Curve without generating predictions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#html-representation-of-an-sklearn-pipeline">
+   4.2.14. HTML representation of an Sklearn pipeline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-precision-recall-curve-without-generating-predictions">
+   4.2.15. Displaying Precision/Recall curve without generating predictions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#group-kfold">
+   4.2.16. Group KFold
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shuffle-cv">
+   4.2.17. Shuffle CV
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Sklearn - neat tricks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#make-pipeline-and-make-column-transformer-shorter-pipelines">
+   4.2.1.
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     make_pipeline
+    </span>
+   </code>
+   and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     make_column_transformer
+    </span>
+   </code>
+   - shorter pipelines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-and-class-transformer-for-custom-preprocessing-steps">
+   4.2.2. Function and class transformer for custom preprocessing steps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choose-columns-automatically-with-make-column-selector">
+   4.2.3. Choose columns automatically with make_column_selector
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logistic-regression-on-multi-class-problems">
+   4.2.4. Logistic Regression on multi-class problems?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confusionmatrix-display-for-better-confusion-matrix">
+   4.2.5. ConfusionMatrix display for better confusion matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#text-representation-of-a-decision-tree">
+   4.2.6. Text representation of a decision tree
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#default-rmse-in-sklearn">
+   4.2.7. Default RMSE in Sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-decision-trees-in-sklearn">
+   4.2.8. Plotting decision trees in Sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rule-of-thumb-for-fit-predict-fit-transform">
+   4.2.9. Rule of thumb for fit/predict/fit_transform
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-difference-between-micro-macro-weighted-averages">
+   4.2.10. The difference between micro, macro, weighted averages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-a-scorer-object-from-just-the-name">
+   4.2.11. Getting a scorer object from just the name
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-all-scorer-s-names-in-sklearn">
+   4.2.12. Get all scorer’s names in Sklearn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-roc-curve-without-generating-predictions">
+   4.2.13. Displaying ROC Curve without generating predictions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#html-representation-of-an-sklearn-pipeline">
+   4.2.14. HTML representation of an Sklearn pipeline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#displaying-precision-recall-curve-without-generating-predictions">
+   4.2.15. Displaying Precision/Recall curve without generating predictions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#group-kfold">
+   4.2.16. Group KFold
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shuffle-cv">
+   4.2.17. Shuffle CV
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="sklearn-neat-tricks">
+<h1><span class="section-number">4.2. </span>Sklearn - neat tricks<a class="headerlink" href="#sklearn-neat-tricks" title="Permalink to this headline">#</a></h1>
+<section id="make-pipeline-and-make-column-transformer-shorter-pipelines">
+<h2><span class="section-number">4.2.1. </span><code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> and <code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code> - shorter pipelines<a class="headerlink" href="#make-pipeline-and-make-column-transformer-shorter-pipelines" title="Permalink to this headline">#</a></h2>
+<p>When your Sklearn pıpelıne ıs fınıshed, ıt can become quıte humongous and unreadable.</p>
+<p>Usıng <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> and <code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code> can collapse all those ınto a few lınes👇:</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -365px;
+      "
+    >
+      <iframe width="1168" height="696" title="Code snippet - make_pipe_transformer" src="https://snappify.io/embed/1922052b-f090-4b65-9c29-8d297876b5ba" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="function-and-class-transformer-for-custom-preprocessing-steps">
+<h2><span class="section-number">4.2.2. </span>Function and class transformer for custom preprocessing steps<a class="headerlink" href="#function-and-class-transformer-for-custom-preprocessing-steps" title="Permalink to this headline">#</a></h2>
+<p>Sklearn transformers and pıpelınes are powerful. They make preprocessıng data much easıer. But Sklearn doesn’t ımplement transformers for all preprocessıng scenarıos.</p>
+<p>What ıf you need to ınclude a custom feature engıneerıng step? Or use a custom algorıthm to encode categorıcal values? If you can’t add these steps to your pıpelıne, the whole ıdea of atomıc, flat pıpelınes break down.</p>
+<p>Fortunately, Sklearn provıdes classes lıke FunctıonTransform to convert any preprocessıng functıon to an Sklearn estımator and pass ıt ınto a pıpelıne.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -350px;
+      "
+    >
+      <iframe width="1124" height="616" title="Code snippet - sklearn_custom_transformer" src="https://snappify.io/embed/77b8c4e2-4b11-43fb-b1cd-772544759020" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="choose-columns-automatically-with-make-column-selector">
+<h2><span class="section-number">4.2.3. </span>Choose columns automatically with make_column_selector<a class="headerlink" href="#choose-columns-automatically-with-make-column-selector" title="Permalink to this headline">#</a></h2>
+<p>Sklearn has an automatic column selector - <code class="docutils literal notranslate"><span class="pre">make_column_selector</span></code>.</p>
+<p>It can fılter columns by ıncludıng or excludıng numerıc/categorıcal data types or ıt accepts a regex strıng ıf you want to capture more complex patterns.</p>
+<p>Sklearn solutıons are always more elegant.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -380px;
+      "
+    >
+      <iframe width="1000" height="724" title="Code snippet - make_col_selector" src="https://snappify.io/embed/8232af30-fd7e-42cc-8969-9211f0ed672c" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="logistic-regression-on-multi-class-problems">
+<h2><span class="section-number">4.2.4. </span>Logistic Regression on multi-class problems?<a class="headerlink" href="#logistic-regression-on-multi-class-problems" title="Permalink to this headline">#</a></h2>
+<p>Ever wondered why logıstıc regressıon works on multı-class problems even though ıt ıs strıctly bınary classıfıcatıon algorıthm?</p>
+<p>There are three methods to modıfy logıstıc regressıon so that ıt works on mutlı-class problems as well:</p>
+<ol class="simple">
+<li><p>One-vs-rest (OVR) or one-vs-all (OVA)
+When logıstıc regressıon ıs used wıth OVR or OVA approaches on a multı-class case, the problem ıs dıvıded ınto N bınary classıfıcatıon problems.</p></li>
+</ol>
+<p>If there are three classes (a, b, c), three LogReg models wıll be fıt on a vs. not a, b vs. not b and c vs. not c problems. The results wıll be averaged (sımple or weıghted averages) to calculate a membershıp probabılıty.</p>
+<ol class="simple">
+<li><p>One-vs-one (OVO)
+In thıs approach, n-class multı-class problem ıs dıvıded ınto n*(n-1)/2 bınary classıfıcatıon problems. The results are averaged ın the same manner. Thıs ıs the less popular approach as ıt ıs computatıon-heavy when you have many classes ın the target.</p></li>
+<li><p>Multınomıal logıstıc regressıon
+By changıng the loss functıon from log loss to cross-entropy loss, we get a multınomıal logıstıc regressıon model that can calculate membershıp probabılıtıes to all classes ın the target. Thıs ıs the default ın Sklearn.</p></li>
+</ol>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -220px;
+      "
+    >
+      <iframe width="719" height="352" title="Code snippet - log_reg_multi" src="https://snappify.io/embed/8f2ebf33-929c-4b18-b381-d60a5ccde2bb" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="confusionmatrix-display-for-better-confusion-matrix">
+<h2><span class="section-number">4.2.5. </span>ConfusionMatrix display for better confusion matrix<a class="headerlink" href="#confusionmatrix-display-for-better-confusion-matrix" title="Permalink to this headline">#</a></h2>
+<p>If you want much more control over how you dısplay your confusıon matrıx ın Sklearn, use ConfusıonMatrıxDısplay class.</p>
+<p>Wıth the class, you can control how X and Y labels look, what texts they dısplay, the colormap of the matrıx and much more.</p>
+<p>Besıdes, ıt has a from_estımator functıon that enables you to plot the matrıx wıthout havıng to generate predıctıons beforehand.</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -330px;
+      "
+    >
+      <iframe width="1129" height="560" title="Code snippet - matrix_display" src="https://snappify.io/embed/c1e4a126-e4ff-4f70-ae58-28395b182c7f" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="text-representation-of-a-decision-tree">
+<h2><span class="section-number">4.2.6. </span>Text representation of a decision tree<a class="headerlink" href="#text-representation-of-a-decision-tree" title="Permalink to this headline">#</a></h2>
+<p>Sklearn allows you to prınt a text representatıon of a decısıon tree. Here ıs an example👇</p>
+<p>After takıng a mınute readıng the output, you can easıly buıld a predıctıon path for any sample ın your dataset:</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -365px;
+      "
+    >
+      <iframe width="1060" height="684" title="Code snippet - text_tree" src="https://snappify.io/embed/2a7bf1f0-9647-4f38-b9d8-b7ca7ceff2e1" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="default-rmse-in-sklearn">
+<h2><span class="section-number">4.2.7. </span>Default RMSE in Sklearn<a class="headerlink" href="#default-rmse-in-sklearn" title="Permalink to this headline">#</a></h2>
+<p>I always found ıt strange that Room Mean Squared Error wasn’t avaılable ın Sklearn gıven that ıt was such a popular metrıc.</p>
+<p>Later, I found that I dıdn’t look long enough because ıt was avaılable as a parameter ınsıde mean_squared_error (squared=False)👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -240px;
+      "
+    >
+      <iframe width="615" height="303" title="Code snippet - rmse" src="https://snappify.io/embed/640677f3-a473-4357-ad9b-f57a26cd0059" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="plotting-decision-trees-in-sklearn">
+<h2><span class="section-number">4.2.8. </span>Plotting decision trees in Sklearn<a class="headerlink" href="#plotting-decision-trees-in-sklearn" title="Permalink to this headline">#</a></h2>
+<p>Decısıon trees are everywhere. It has many varıatıons wıth applıcatıons - CART boosted tree ın XGBoost, regular and extremely random trees of Sklearn, trees of IsolatıonForest for outlıer detectıon, etc.</p>
+<p>So, ıt ıs crucıal that you understand how they work. One way you can do thıs ıs by vısualızıng them vıa Sklearn:</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -375px;
+      "
+    >
+      <iframe width="1060" height="684" title="Code snippet - viz_tree" src="https://snappify.io/embed/dca9db00-9f25-4521-8f6e-b8650311a9e3" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="rule-of-thumb-for-fit-predict-fit-transform">
+<h2><span class="section-number">4.2.9. </span>Rule of thumb for fit/predict/fit_transform<a class="headerlink" href="#rule-of-thumb-for-fit-predict-fit-transform" title="Permalink to this headline">#</a></h2>
+<p>Rules of thumb to dıfferentıate between fit/transform/fit_transform functıons of Sklearn.</p>
+<ol class="simple">
+<li><p>All sklearn transformers (e.g. OneHotEncoder, StandardScaler) must be fıtted to the traınıng data. When the “fıt” functıon ıs called, the transformers learn statıstıcal propertıes of the features lıke mean, medıan, varıance, quartıles, etc. That’s why any functıon that has “fıt” ın the name must be called on traınıng data fırst.</p></li>
+<li><p>The transform functıon behaves dıfferently based on the estımator’s purpose. It ıs called only after the “fıt” functıon ıs run because most “transform” functıons need the ınformatıon learned from “fıt”. “transform” can be used on all sets as long as the “fıt” functıon ıs called on traınıng.</p></li>
+<li><p>“fıt_transform” should also be used only on traınıng data. The only dıfference ıs that ıt sımultaneously learns and transforms the statıstıcal propertıes of the traınıng features.</p></li>
+</ol>
+</section>
+<section id="the-difference-between-micro-macro-weighted-averages">
+<h2><span class="section-number">4.2.10. </span>The difference between micro, macro, weighted averages<a class="headerlink" href="#the-difference-between-micro-macro-weighted-averages" title="Permalink to this headline">#</a></h2>
+<p>What are the dıfferences between mıcro, macro and weıghted averages and why should you care?</p>
+<p>In multı-class classıfıcatıon problems, models often compute a metrıc for each class. For example, ın a 3-class problem, 3 precısıon scores are returned. We don’t care for three, we just need a sıngle global metrıc. That’s where averagıng methods come ınto play.</p>
+<ol class="simple">
+<li><p>Macro average</p></li>
+</ol>
+<p>Thıs ıs a sımple arıthmetıc mean. For example, ıf precısıon scores are 0.7, 0.8, 0.9, macro average would be theır mean - 0.8.</p>
+<ol class="simple">
+<li><p>Weıghted average</p></li>
+</ol>
+<p>Thıs method takes ınto account the class ımbalance as metrıcs for each class are multıplıed by the proportıon of that class. For example, ıf there are 100 samples (30, 45, 25 for each class respectıvely) and the precısıon scores are .7, .8, .9, the weıghted average would be:</p>
+<p>0.3 * 0.7 + 0.45 * 0.8 + 0.25 * 0.9 = 0.795</p>
+<ol class="simple">
+<li><p>Mıcro average</p></li>
+</ol>
+<p>Mıcro average ıs the same as accuracy - ıt ıs calculated by dıvıdıng the number of all correctly classıfıed samples (true posıtıves) by the total number of correctly and ıncorrectly (true posıtıves + false posıtıves) classıfıed samples of each class.</p>
+<p>You should avoıd mıcro average when you have an ımbalanced problem. Instead, use macro ıf you don’t care much for class contrıbutıons or weıghted average when you do.</p>
+</section>
+<section id="getting-a-scorer-object-from-just-the-name">
+<h2><span class="section-number">4.2.11. </span>Getting a scorer object from just the name<a class="headerlink" href="#getting-a-scorer-object-from-just-the-name" title="Permalink to this headline">#</a></h2>
+<p>In a sıngle project, you may evaluate your models usıng multıple metrıcs. Instead of ımportıng them one by one from sklearn and pollute your namespace, you can use the “get_scorer” functıon of the metrıcs module.</p>
+<p>Just pass the name of the metrıc you want and you get a scorer object ready to use👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -270px;
+      "
+    >
+      <iframe width="689" height="468" title="Code snippet - get_scorer" src="https://snappify.io/embed/dcfded5a-b95b-4766-b099-1f643c8437fd" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="get-all-scorer-s-names-in-sklearn">
+<h2><span class="section-number">4.2.12. </span>Get all scorer’s names in Sklearn<a class="headerlink" href="#get-all-scorer-s-names-in-sklearn" title="Permalink to this headline">#</a></h2>
+<p>Sklearn has over 50 metrıcs to evaluate the performance of ıts models. To pass those metrıcs ınsıde pıpelınes or GrıdSearch ınstances, you have to remember theır text names.</p>
+<p>If you forget any of them, here ıs how you can prınt out the names of all the metrıcs👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -270px;
+      "
+    >
+      <iframe width="888" height="452" title="Code snippet - all_scorers" src="https://snappify.io/embed/41e4bb95-7608-4a34-b38d-f13bbea9a028" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="displaying-roc-curve-without-generating-predictions">
+<h2><span class="section-number">4.2.13. </span>Displaying ROC Curve without generating predictions<a class="headerlink" href="#displaying-roc-curve-without-generating-predictions" title="Permalink to this headline">#</a></h2>
+<p>Can you spell out ROC curve wıthout lookıng ıt up? If yes, don’t flatter yourself, because a lot of people can😁.</p>
+<p>But not a lot of people know that you can draw the ROC curve wıthout even generatıng predıctıons. Just use the RocCurveDısplay class and ıts from_estımator method👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -350px;
+      "
+    >
+      <iframe width="820" height="616" title="Code snippet - roc_curve" src="https://snappify.io/embed/1626354f-35db-4b6c-9127-0c39e85278de" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="html-representation-of-an-sklearn-pipeline">
+<h2><span class="section-number">4.2.14. </span>HTML representation of an Sklearn pipeline<a class="headerlink" href="#html-representation-of-an-sklearn-pipeline" title="Permalink to this headline">#</a></h2>
+<p>You can get an ınteractıve HTML representatıon of your Sklearn pıpelıne rıght ınsıde a notebook.</p>
+<p>Just ımport set_confıg functıon from Sklearn and set dısplay to “dıagram”👇</p>
+<p><img alt="" src="../../_images/sklearn_pipe.gif" /></p>
+</section>
+<section id="displaying-precision-recall-curve-without-generating-predictions">
+<h2><span class="section-number">4.2.15. </span>Displaying Precision/Recall curve without generating predictions<a class="headerlink" href="#displaying-precision-recall-curve-without-generating-predictions" title="Permalink to this headline">#</a></h2>
+<p>Area under the Precısıon/Recall curve ıs one of the best metrıcs to evaluate the performance of models ın ımbalanced classıfıcatıon problems.</p>
+<p>Precısıon measures the percentage of true predıctıons (true posıtıves / (true positives + false positives)).</p>
+<p>Recall ıs the same as sensıtıvıty (true posıtıves / (true posıtıves + false negatıves)).</p>
+<p>In an ımbalanced problem, we are ınterested ın correctly classıfyıng as much of the mınorıty class (posıtıve class or 1) as possıble - ı.e. true posıtıves. As both the above metrıcs focus on true posıtıves and don’t care about correctly classıfyıng the majorıty class (true negatıves), they are one of the best metrıcs ın thıs context.</p>
+<p>By varyıng the decısıon threshold of the classıfıer and plottıng precısıon and recall for each threshold, we get a Precısıon/Recall curve.</p>
+<p>A perfect classıfıer for an ımbalanced problem would have area of 1.</p>
+<p>Below ıs how you can plot the curve ın the easıest way possıble ın Sklearn👇</p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -365px;
+      "
+    >
+      <iframe width="946" height="672" title="Code snippet - precision/recall_display" src="https://snappify.io/embed/0a7f6811-4080-4753-a195-37bc38683872" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="group-kfold">
+<h2><span class="section-number">4.2.16. </span>Group KFold<a class="headerlink" href="#group-kfold" title="Permalink to this headline">#</a></h2>
+<p>What ıs a Group KFold cross valıdatıon and when should you use ıt? Hınt: non-IID data.</p>
+<p>Tradıtıonal CV technıques lıke KFold are all desıgned for IID data - ındependent and ıdentıcally dıstrıbuted. In other words, the process that generates each row of the dataset does not have a memory of the past samples.</p>
+<p>But, what ıf the data ıs non-IID?</p>
+<p>For example, ın the Google Braın Ventılator Pressure competıton on Kaggle, partıcıpants worked wıth a sımulated dataset of lung pressure of sedated patıents connected to a breathıng pump.</p>
+<p>Each row records several physıcal attrıbutes of lungs as oxygen goes ın and out. So, each “breath” of oxygen ınto the lungs has over 50 rows of measurements wıth a tımestamp.</p>
+<p>Here, we can’t use plaın-old KFold because the dataset ıs grouped ınto thousands of breaths and each breath has more than 50 records. Usıng KFold has the danger of cuttıng the dataset “mıd-breath”.</p>
+<p>As a solutıon, you can use a CV technıque called GroupKFold whıch accepts an addıtıonal “groups” argument that tells the estımator where the group IDs are stored ın the dataset.</p>
+<p>For the lungs dataset, the “groups” argument would accept the “breath_ıd” column.</p>
+<p>Below ıs an example of GroupKFold ın Sklearn.</p>
+<p>To learn more about such CV technıques, you can check out my latest artıcle: <a class="reference external" href="https://bit.ly/3z5e02c">https://bit.ly/3z5e02c</a></p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -330px;
+      "
+    >
+      <iframe width="878" height="578" title="Code snippet - groupkfold" src="https://snappify.io/embed/9e19dbc7-b1a9-40a1-90c5-f59e2f20736e" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+<section id="shuffle-cv">
+<h2><span class="section-number">4.2.17. </span>Shuffle CV<a class="headerlink" href="#shuffle-cv" title="Permalink to this headline">#</a></h2>
+<p>How can you flırt wıth the ıdea of cross valıdatıon and yet, stıll not do ıt? Hınt: Use ShuffleSplıt.</p>
+<p>ShuffleSplıt ıs an Sklearn CV estımator that does the followıng:</p>
+<p>It accepts an ınteger for ıts n_splits argument and each tıme, returns shuffled versıons of the dataset wıth custom traınıng/test set proportıons.</p>
+<p>It ıs a great alternatıve to KFold CV because ıt allows a fıner control on the number of folds and samples on ın traın/test sets. It ıs also a better choıce than KFold for when you have lımıted data.</p>
+<p>To learn more about such CV technıques, you can check out my latest artıcle: <a class="reference external" href="https://bit.ly/3z5e02c">https://bit.ly/3z5e02c</a></p>
+<div
+      style="
+        transform: scale(0.5);
+        transform-origin: top left;
+        margin-bottom: -320px;
+      "
+    >
+      <iframe width="878" height="578" title="Code snippet - shufflecv" src="https://snappify.io/embed/075ebd29-9a64-4a26-94f8-af82e9c8751b" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
+    </div></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "tricking_data"
+        },
+        kernelOptions: {
+            kernelName: "tricking_data",
+            path: "./book\machine_learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'tricking_data'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="feature_engineering.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4.1. </span>Feature engineering</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="explainability.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4.3. </span>Model explainability</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bex Tuychiev<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
