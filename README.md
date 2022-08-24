@@ -47,7 +47,7 @@ that *right place* for many.
 
 <h2>Don't shy away...</h2>
 This is an open-source book, not an exclusive property of mine. If you have a trick or
-a resource of your own, create a pull request and give the great satisfaction of accepting
+a resource of your own, create a pull request and give me the great satisfaction of accepting
 my very first! With your permission, I will add the trick to the book using Snappify—the
 tool I used for those interactive code blocks and
 maybe share it on LinkedIn.
