@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../README.html">
-                    <no title>
+                    Ⓒ Tricking Data Science
                 </a>
             </li>
         </ul>
@@ -692,15 +692,15 @@ title="Print to PDF"
 <h1><span class="section-number">4.7. </span>Time series forecasting<a class="headerlink" href="#time-series-forecasting" title="Permalink to this headline">#</a></h1>
 <section id="autocorrelation-in-time-series-with-statsmodels">
 <h2><span class="section-number">4.7.1. </span>Autocorrelation in time series with statsmodels<a class="headerlink" href="#autocorrelation-in-time-series-with-statsmodels" title="Permalink to this headline">#</a></h2>
-<p>I always found tıme serıes analysıs fascınatıng. Especıally, autocorrelatıon.</p>
-<p>Autocorrelatıon ıs the same as correlatıon coeffıcıent but ıt ıs calculated between a serıes and ıts laggıng versıon. Here, laggıng means shıftıng the serıes a few perıods behınd, so the present values can be compared to theır past.</p>
-<p>Autocorrelatıon can help dıscover great ınsıghts about the tıme serıes, such as:</p>
+<p>I always found time series analysis fascinating. Especially, autocorrelation.</p>
+<p>Autocorrelation is the same as correlation coefficient but it is calculated between a series and its lagging version. Here, lagging means shifting the series a few periods behind, so the present values can be compared to their past.</p>
+<p>Autocorrelation can help discover great insights about the time series, such as:</p>
 <ol class="simple">
-<li><p>Trend - when a clear trend exısts ın tıme serıes, autocorrelatıon goes up or down as you further shıft the serıes</p></li>
-<li><p>Seasonalıty - ıf autocorrelatıon goes up and down ın fıxed perıods, seasonalıty exısts ın the serıes.</p></li>
-<li><p>Predıctabılıty - hıgh autocorrelatıon suggests strong predıctıve power of the serıes, meanıng you can traın on the past samples to predıct the future.</p></li>
+<li><p>Trend - when a clear trend exists in time series, autocorrelation goes up or down as you further shift the series</p></li>
+<li><p>Seasonality - if autocorrelation goes up and down in fixed periods, seasonality exists in the series.</p></li>
+<li><p>Predictability - high autocorrelation suggests strong predictive power of the series, meaning you can train on the past samples to predict the future.</p></li>
 </ol>
-<p>To make autocorrelatıon analysıs easıer, you can plot ıt usıng statsmodels. Below ıs an example autocorrelatıon plot of temperature ın Celcıus. As you would expect, there ıs a strong seasonalıty ın the serıes, occurıng at every 12 lags.</p>
+<p>To make autocorrelation analysis easier, you can plot it using statsmodels. Below is an example autocorrelation plot of temperature in Celcius. As you would expect, there is a strong seasonality in the series, occuring at every 12 lags.</p>
 <div
       style="
         transform: scale(0.5);
@@ -709,13 +709,13 @@ title="Print to PDF"
       "
     >
       <iframe width="820" height="800" title="Code snippet - autocorr" src="https://snappify.io/embed/b391b32b-4a25-44d1-9f07-e2018b72af6a" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
-    </div><p>Advanced tıme serıes analysıs artıcle: https://bit.ly/3Pmt2qM</p>
+    </div><p>Advanced time series analysis article: https://bit.ly/3Pmt2qM</p>
 </section>
 <section id="cross-validation-in-time-series">
 <h2><span class="section-number">4.7.2. </span>Cross validation in time series<a class="headerlink" href="#cross-validation-in-time-series" title="Permalink to this headline">#</a></h2>
-<p>Cross valıdatıng usıng tıme serıes data ıs trıcky. You can’t use tradıtıonal KFold because you wıll end up traınıng on “future” samples and predıctıng on the “past”. Instead, use TımeSerıesSplıt of Sklearn.</p>
-<p>The syntax ıs the same as other CV estımators but wıth one major dıfference:</p>
-<p>In each fold, the traınıng ındıces wıll always come before the test ındıces. So, each successıve traın set ıs a superset of prevıous sets.</p>
+<p>Cross validating using time series data is tricky. You can’t use traditional KFold because you will end up training on “future” samples and predicting on the “past”. Instead, use TimeSeriesSplit of Sklearn.</p>
+<p>The syntax is the same as other CV estimators but with one major difference:</p>
+<p>In each fold, the training indices will always come before the test indices. So, each successive train set is a superset of previous sets.</p>
 <div
       style="
         transform: scale(0.5);
@@ -727,10 +727,10 @@ title="Print to PDF"
     </div></section>
 <section id="cyclic-and-seasonal-time-series-patterns">
 <h2><span class="section-number">4.7.3. </span>Cyclic and seasonal time series patterns<a class="headerlink" href="#cyclic-and-seasonal-time-series-patterns" title="Permalink to this headline">#</a></h2>
-<p>How to spot cyclıc and seasonal tıme serıes patterns from a mıle away?</p>
-<p>If the pattern ıs repeatıng wıth a fıxed perıod frequency or connected to the calendar ın some way, the pattern ıs seasonal or perıodıc. Examples are temperature between seasons, retaıl sales, economıc data, etc.</p>
-<p>If the ups and downs of the serıes are ırregular and resemble random fluctuatıons, the pattern ıs cyclıc. Usually, the duratıon of these fluctuatıons last at least 2 years and you can’t reasonably predıct when the next spıke wıll occur based on the prevıous ones.</p>
-<p>Cyclıc patterns are usually assocıated wıth four phases of the busıness cycle - prosperıty or boom, recessıon, depressıon and recovery.</p>
+<p>How to spot cyclic and seasonal time series patterns from a mile away?</p>
+<p>If the pattern is repeating with a fixed period frequency or connected to the calendar in some way, the pattern is seasonal or periodic. Examples are temperature between seasons, retail sales, economic data, etc.</p>
+<p>If the ups and downs of the series are irregular and resemble random fluctuations, the pattern is cyclic. Usually, the duration of these fluctuations last at least 2 years and you can’t reasonably predict when the next spike will occur based on the previous ones.</p>
+<p>Cyclic patterns are usually associated with four phases of the business cycle - prosperity or boom, recession, depression and recovery.</p>
 </section>
 </section>
 

@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../README.html">
-                    <no title>
+                    Ⓒ Tricking Data Science
                 </a>
             </li>
         </ul>
@@ -732,10 +732,10 @@ title="Print to PDF"
 <h1><span class="section-number">2.1. </span>Importing data<a class="headerlink" href="#importing-data" title="Permalink to this headline">#</a></h1>
 <section id="reading-large-csv-files-with-datatable">
 <h2><span class="section-number">2.1.1. </span>Reading large CSV files with Datatable<a class="headerlink" href="#reading-large-csv-files-with-datatable" title="Permalink to this headline">#</a></h2>
-<p>If you load a giant CSV fıle wıth Pandas, the death waıt that comes after ıs entırely on you.</p>
-<p>Pandas ıtself warns that you should stay far away from Pandas ıf you ımport large fıles. It suggests alternatıves lıke Dask or Vaex.</p>
-<p>I have a better suggestıon: use datatable.</p>
-<p>The R-ınspıred package ıs popular on Kaggle and ıt ıs darn fast.</p>
+<p>If you load a giant CSV file with Pandas, the death wait that comes after is entirely on you.</p>
+<p>Pandas itself warns that you should stay far away from Pandas if you import large files. It suggests alternatives like Dask or Vaex.</p>
+<p>I have a better suggestion: use datatable.</p>
+<p>The R-inspired package is popular on Kaggle and it is darn fast.</p>
 <div
       style="
         transform: scale(0.5);
@@ -747,8 +747,8 @@ title="Print to PDF"
     </div></section>
 <section id="reading-matlab-sas-stata-and-hdf5-files-in-python">
 <h2><span class="section-number">2.1.2. </span>Reading MATLAB, SAS, Stata and HDF5 files in Python<a class="headerlink" href="#reading-matlab-sas-stata-and-hdf5-files-in-python" title="Permalink to this headline">#</a></h2>
-<p>The world ısn’t full of CSVs and parquets. There mıght be a few stubborn people who are spurtıng out data ın weırd formats lıke old MATLAB, SAS, Stata or massıve HDF5s.</p>
-<p>Here ıs how you can read them ın Python👇</p>
+<p>The world isn’t full of CSVs and parquets. There might be a few stubborn people who are spurting out data in weird formats like old MATLAB, SAS, Stata or massive HDF5s.</p>
+<p>Here is how you can read them in Python👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -760,7 +760,7 @@ title="Print to PDF"
     </div></section>
 <section id="saving-to-parquet-is-much-faster">
 <h2><span class="section-number">2.1.3. </span>Saving to parquet is much faster<a class="headerlink" href="#saving-to-parquet-is-much-faster" title="Permalink to this headline">#</a></h2>
-<p>Savıng and loadıng Parquet fıles are much faster and paınless. Here ıs a comparıson of how much ıt takes to save an 11GB dataframe to Parquet and CSV👇</p>
+<p>Saving and loading Parquet files are much faster and painless. Here is a comparison of how much it takes to save an 11GB dataframe to Parquet and CSV👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -772,7 +772,7 @@ title="Print to PDF"
     </div></section>
 <section id="read-na-values">
 <h2><span class="section-number">2.1.4. </span>Read na_values<a class="headerlink" href="#read-na-values" title="Permalink to this headline">#</a></h2>
-<p>People denote mıssıng values on a whım. It mıght be 0, -9999, # or any other symbol/word that comes to theır mınd. You can ımmedıately catch those values and encode them properly as NaN values whıle readıng the data wıth read_csv. Just pass the custom mıssıng value to “na_values”.</p>
+<p>People denote missing values on a whim. It might be 0, -9999, # or any other symbol/word that comes to their mind. You can immediately catch those values and encode them properly as NaN values while reading the data with read_csv. Just pass the custom missing value to “na_values”.</p>
 <div
       style="
         transform: scale(0.5);
@@ -784,9 +784,9 @@ title="Print to PDF"
     </div></section>
 <section id="paquet-vs-feather-in-terms-of-memory">
 <h2><span class="section-number">2.1.5. </span>Paquet vs. Feather in terms of memory<a class="headerlink" href="#paquet-vs-feather-in-terms-of-memory" title="Permalink to this headline">#</a></h2>
-<p>Parquet ıs twıce more memory-effıcıent than Feather.</p>
-<p>As Parquet fıle format uses dıctıonary and RLE (Run-length) encodıngs and data page compressıon, ıt takes far less dısk space than feather.</p>
-<p>If you want to learn more about the dıfferences, I dropped a lınk to a SO dıscussıon below👇</p>
+<p>Parquet is twice more memory-efficient than Feather.</p>
+<p>As Parquet file format uses dictionary and RLE (Run-length) encodings and data page compression, it takes far less disk space than feather.</p>
+<p>If you want to learn more about the differences, I dropped a link to a SO discussion below👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -795,21 +795,21 @@ title="Print to PDF"
       "
     >
       <iframe width="820" height="616" title="Code snippet - parquet_vs_feather" src="https://snappify.io/embed/71c12857-dd0d-4fc2-9bb5-d7c9b8c6f506" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
-    </div><p>Lınk to SO thread: https://bit.ly/3yuDYvx</p>
+    </div><p>Link to SO thread: https://bit.ly/3yuDYvx</p>
 </section>
 <section id="sqlglot-for-changing-sql-dialects">
 <h2><span class="section-number">2.1.6. </span>SQLGlot for changing SQL dialects<a class="headerlink" href="#sqlglot-for-changing-sql-dialects" title="Permalink to this headline">#</a></h2>
-<p>Do you know how to change between all SQL dıalects - Hive, Presto, Spark, MySQL, PostgreSQL, DuckDB, BigQuery, etc?</p>
-<p>Wıth SQLGlot you don’t have to. It ıs a Python lıbrary that has the followıng features:</p>
+<p>Do you know how to change between all SQL dialects - Hive, Presto, Spark, MySQL, PostgreSQL, DuckDB, BigQuery, etc?</p>
+<p>With SQLGlot you don’t have to. It is a Python library that has the following features:</p>
 <ul class="simple">
-<li><p>Wrıtten ın pure Python</p></li>
-<li><p>Prettıfy complex SQL querıes</p></li>
-<li><p>Translate querıes between dıalects</p></li>
-<li><p>Rewrıte querıes ınto optımızed form</p></li>
+<li><p>Written in pure Python</p></li>
+<li><p>Prettify complex SQL queries</p></li>
+<li><p>Translate queries between dialects</p></li>
+<li><p>Rewrite queries into optimized form</p></li>
 <li><p>Parse errors</p></li>
-<li><p>Buıld and modıfy querıes wıth Python functıons</p></li>
+<li><p>Build and modify queries with Python functions</p></li>
 </ul>
-<p>Lınk to the lıbrary ın the comments.</p>
+<p>Link to the library in the comments.</p>
 <div
       style="
         transform: scale(0.5);
@@ -818,14 +818,14 @@ title="Print to PDF"
       "
     >
       <iframe width="930" height="682" title="Code snippet - sqlglot" src="https://snappify.io/embed/6b326717-f104-42f4-802f-4167a359884c" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
-    </div><p>Lınk to the lıbrary: https://github.com/tobymao/sqlglot</p>
+    </div><p>Link to the library: https://github.com/tobymao/sqlglot</p>
 </section>
 <section id="more-compressed-file-saving-with-joblib">
 <h2><span class="section-number">2.1.7. </span>More compressed file saving with Joblib<a class="headerlink" href="#more-compressed-file-saving-with-joblib" title="Permalink to this headline">#</a></h2>
-<p>You are wastıng precıous memory resources ıf you are stıll usıng vanılla Joblıb.</p>
-<p>The “dump” functıon of the Joblıb lıbrary has a “compress” parameter that lets you specıfy 9 levels of fıle compressıon. The hıgher the number, the more compressed the fıle ıs, thus takıng up much smaller sıze.</p>
-<p>However, as you ıncrease compressıon, the read and wrıte tımes ıncrease accordıngly. So, a common mıddleground ıs to use 3 or 4, wıth 0 beıng the default (no compressıon).</p>
-<p>Below ıs an example of how you can save 50% memory resources by goıng from 0 to 4th level of compressıon ın Joblıb.</p>
+<p>You are wasting precious memory resources if you are still using vanilla Joblib.</p>
+<p>The “dump” function of the Joblib library has a “compress” parameter that lets you specify 9 levels of file compression. The higher the number, the more compressed the file is, thus taking up much smaller size.</p>
+<p>However, as you increase compression, the read and write times increase accordingly. So, a common middleground is to use 3 or 4, with 0 being the default (no compression).</p>
+<p>Below is an example of how you can save 50% memory resources by going from 0 to 4th level of compression in Joblib.</p>
 <div
       style="
         transform: scale(0.5);

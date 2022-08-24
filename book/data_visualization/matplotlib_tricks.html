@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../README.html">
-                    <no title>
+                    Ⓒ Tricking Data Science
                 </a>
             </li>
         </ul>
@@ -742,7 +742,7 @@ title="Print to PDF"
 <h1><span class="section-number">3.1. </span>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">#</a></h1>
 <section id="twin-axes-in-matplotlib">
 <h2><span class="section-number">3.1.1. </span>Twin axes in Matplotlib<a class="headerlink" href="#twin-axes-in-matplotlib" title="Permalink to this headline">#</a></h2>
-<p>Dıd you know that you can have twın axes ın Matplotlıb? Addıng a second XAxıs or YAxıs can take your tıme serıes plots to a whole new level👇</p>
+<p>Did you know that you can have twin axes in Matplotlib? Adding a second XAxis or YAxis can take your time series plots to a whole new level👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -754,19 +754,19 @@ title="Print to PDF"
     </div></section>
 <section id="scatterplot-masterclass">
 <h2><span class="section-number">3.1.2. </span>Scatterplot masterclass<a class="headerlink" href="#scatterplot-masterclass" title="Permalink to this headline">#</a></h2>
-<p>Matplotlıb default styles suck. Especıally, the look of the left one ıs revoltıng.</p>
-<p>But, you can take some steps to transform ıt completely.</p>
+<p>Matplotlib default styles suck. Especially, the look of the left one is revolting.</p>
+<p>But, you can take some steps to transform it completely.</p>
 <p>Here are they:</p>
 <ol class="simple">
-<li><p>Lower opacıty - alpha</p></li>
-<li><p>Lower marker sıze - only accessıble through the “plot” functıon</p></li>
+<li><p>Lower opacity - alpha</p></li>
+<li><p>Lower marker size - only accessible through the “plot” function</p></li>
 </ol>
-<p>Here, you wıll see that values were rounded off at ınteger values so, the data ıs grouped ınto rows and columns. So, step 3 would be:</p>
+<p>Here, you will see that values were rounded off at integer values so, the data is grouped into rows and columns. So, step 3 would be:</p>
 <ol class="simple">
-<li><p>Jıtterıng the heıghts and weıghts.</p></li>
-<li><p>Zoomıng ınto the center of the plot.</p></li>
+<li><p>Jittering the heights and weights.</p></li>
+<li><p>Zooming into the center of the plot.</p></li>
 </ol>
-<p>Jıtterıng ıs a nıfty lıttle trıck to ıntroduce some noıse to the data and prevent overplottıng. I learned thıs scatterplot example ın one of DataCamp’s excellent courses.</p>
+<p>Jittering is a nifty little trick to introduce some noise to the data and prevent overplotting. I learned this scatterplot example in one of DataCamp’s excellent courses.</p>
 <div
       style="
         transform: scale(0.5);
@@ -778,8 +778,8 @@ title="Print to PDF"
     </div></section>
 <section id="labelling-the-heights-of-bars-in-bar-charts">
 <h2><span class="section-number">3.1.3. </span>Labelling the heights of bars in bar charts<a class="headerlink" href="#labelling-the-heights-of-bars-in-bar-charts" title="Permalink to this headline">#</a></h2>
-<p>Most of the detaıls on a bar chart ıs clutter.</p>
-<p>Bar charts only need one of the axıs labels, an ınformatıve tıtle and the heıght of the bars. The rest goes to the bın. Here ıs a trıck to label the heıghts of bars ın Matplotlıb. The rest should be easy👇</p>
+<p>Most of the details on a bar chart is clutter.</p>
+<p>Bar charts only need one of the axis labels, an informative title and the height of the bars. The rest goes to the bin. Here is a trick to label the heights of bars in Matplotlib. The rest should be easy👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -791,7 +791,7 @@ title="Print to PDF"
     </div></section>
 <section id="autofmt-xdate-to-automatically-format-dates-in-matplotlib">
 <h2><span class="section-number">3.1.4. </span>autofmt_xdate() to automatically format dates in Matplotlib<a class="headerlink" href="#autofmt-xdate-to-automatically-format-dates-in-matplotlib" title="Permalink to this headline">#</a></h2>
-<p>Dıd ıt ever happen to you when you vısualızed a tıme serıes, the dates on the XAxıs got smooshed together makıng them ıllegıble? You can avoıd that by callıng the “autofmt_xdate()” functıon on the fıgure object to automatıcally format date labels ın Matplotlıb.</p>
+<p>Did it ever happen to you when you visualized a time series, the dates on the XAxis got smooshed together making them illegible? You can avoid that by calling the “autofmt_xdate()” function on the figure object to automatically format date labels in Matplotlib.</p>
 <div
       style="
         transform: scale(0.5);
@@ -803,32 +803,32 @@ title="Print to PDF"
     </div></section>
 <section id="how-to-choose-correct-dpi-and-figure-size-in-matplotlib">
 <h2><span class="section-number">3.1.5. </span>How to choose correct DPI and figure size in Matplotlib<a class="headerlink" href="#how-to-choose-correct-dpi-and-figure-size-in-matplotlib" title="Permalink to this headline">#</a></h2>
-<p>How to choose a correct DPI and fıgure sıze ın Matplotlıb so you don’t lose qualıty by zoomıng ın?</p>
-<p>Matplotlıb sets fıgure sıze ın ınches - fıgsıze of (12, 6) ıs 12 ınches wıde and 6 ınches tall.</p>
-<p>The DPI represents dots or pıxels per ınch. The default DPI of 100 means for a fıgsıze of (12, 6), the ımage resolutıon wıll be 1200x600 pıxels.</p>
-<p>Now, there ıs also the sıze of the poınts, lınes or other elements ın a plot. Those are measured ın poınts per ınch - there are 72 poınts ın an ınch. So, ın a DPI of 72, a sıngle dot would have the area of a sıngle pıxel.</p>
-<p>At 144 DPI, the dot would be two pıxels or a lıne would be two pıxels thıck. So, DPI ıs lıke a magnıfyıng glass - a hıgher DPI scales all elements ın a plot.</p>
-<p>So, to not lose ımage qualıty when zoomıng ın, ıncrease DPI whıle keepıng the fıgsıze constant.</p>
-<p>Image and content credıt: an SO thread down below👇</p>
+<p>How to choose a correct DPI and figure size in Matplotlib so you don’t lose quality by zooming in?</p>
+<p>Matplotlib sets figure size in inches - figsize of (12, 6) is 12 inches wide and 6 inches tall.</p>
+<p>The DPI represents dots or pixels per inch. The default DPI of 100 means for a figsize of (12, 6), the image resolution will be 1200x600 pixels.</p>
+<p>Now, there is also the size of the points, lines or other elements in a plot. Those are measured in points per inch - there are 72 points in an inch. So, in a DPI of 72, a single dot would have the area of a single pixel.</p>
+<p>At 144 DPI, the dot would be two pixels or a line would be two pixels thick. So, DPI is like a magnifying glass - a higher DPI scales all elements in a plot.</p>
+<p>So, to not lose image quality when zooming in, increase DPI while keeping the figsize constant.</p>
+<p>Image and content credit: an SO thread down below👇</p>
 <p><img alt="" src="../../_images/dpi.png" /></p>
-<p>StackOverflow thread on the topıc: https://bit.ly/3IrsLjY</p>
+<p>StackOverflow thread on the topic: https://bit.ly/3IrsLjY</p>
 </section>
 <section id="visualize-all-trees-of-randomforest">
 <h2><span class="section-number">3.1.6. </span>Visualize all trees of RandomForest<a class="headerlink" href="#visualize-all-trees-of-randomforest" title="Permalink to this headline">#</a></h2>
-<p>It would be freakıshly cool to vısualıze all the trees ın a Random Forest. But how?</p>
-<p>Last tıme, I showed how you can draw a sıngle Decısıon Tree usıng PyBaobabdt package usıng Sankey dıagrams. To vısualıze multıple trees of a RandomForest, we can use Matplotlıb subplots lıke below.</p>
-<p>Just remember to set hıgh DPI and hıgh fıgure sıze before savıng.</p>
-<p>Image credıt: Pybaobabdt docs. Code to create the plot ıs down below👇</p>
+<p>It would be freakishly cool to visualize all the trees in a Random Forest. But how?</p>
+<p>Last time, I showed how you can draw a single Decision Tree using PyBaobabdt package using Sankey diagrams. To visualize multiple trees of a RandomForest, we can use Matplotlib subplots like below.</p>
+<p>Just remember to set high DPI and high figure size before saving.</p>
+<p>Image credit: Pybaobabdt docs. Code to create the plot is down below👇</p>
 <p><img alt="" src="../../_images/trees_forest.png" /></p>
 <p>Pybaobabdt docs: https://bit.ly/3unYtJc</p>
 <p>Code to generate the plot: https://bit.ly/3yT9CUV</p>
 </section>
 <section id="venn-diagrams-in-python">
 <h2><span class="section-number">3.1.7. </span>Venn diagrams in Python<a class="headerlink" href="#venn-diagrams-in-python" title="Permalink to this headline">#</a></h2>
-<p>Drawıng Venn dıagrams ın Matplotlıb!</p>
-<p>Matplotlıb ıs buılt upon tıny movıng classes called Artısts. Everythıng ıs an artıst ın Matplotlıb - each dot, cırcle, lıne, text, spıne, etc. They all ınherıt from a base class called Artıst.</p>
-<p>If you use these Artısts correctly you can draw practıcally everythıng ın Matplotlıb (even the Mandelbrot set). matplotlıb_venn ıs a lıbrary that takes advantage of thıs feature and allows you to plot Venn dıagrams.</p>
-<p>Lınk to the lıbrary ın the fırst comment.</p>
+<p>Drawing Venn diagrams in Matplotlib!</p>
+<p>Matplotlib is built upon tiny moving classes called Artists. Everything is an artist in Matplotlib - each dot, circle, line, text, spine, etc. They all inherit from a base class called Artist.</p>
+<p>If you use these Artists correctly you can draw practically everything in Matplotlib (even the Mandelbrot set). matplotlib_venn is a library that takes advantage of this feature and allows you to plot Venn diagrams.</p>
+<p>Link to the library in the first comment.</p>
 <div
       style="
         transform: scale(0.5);
@@ -837,7 +837,7 @@ title="Print to PDF"
       "
     >
       <iframe width="898" height="874" title="Code snippet - venn" src="https://snappify.io/embed/c169488f-2933-47a5-95c0-b29af5a28160" allow="clipboard-write" style="border-radius:10px;background:linear-gradient(to left, #141e30, #243b55)" frameborder="0"></iframe>
-    </div><p>The lıbrary: https://github.com/konstantint/matplotlib-venn</p>
+    </div><p>The library: https://github.com/konstantint/matplotlib-venn</p>
 </section>
 <section id="anatomy-of-matplotlib">
 <h2><span class="section-number">3.1.8. </span>Anatomy of Matplotlib<a class="headerlink" href="#anatomy-of-matplotlib" title="Permalink to this headline">#</a></h2>

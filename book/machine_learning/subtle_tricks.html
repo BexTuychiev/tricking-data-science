@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../README.html">
-                    <no title>
+                    Ⓒ Tricking Data Science
                 </a>
             </li>
         </ul>
@@ -702,7 +702,7 @@ title="Print to PDF"
 <h1><span class="section-number">4.5. </span>Subtle tricks for ML<a class="headerlink" href="#subtle-tricks-for-ml" title="Permalink to this headline">#</a></h1>
 <section id="enabling-categorical-data-support-in-xgboost">
 <h2><span class="section-number">4.5.1. </span>Enabling categorical data support in XGBoost<a class="headerlink" href="#enabling-categorical-data-support-in-xgboost" title="Permalink to this headline">#</a></h2>
-<p>XGBoost has an experımental but very powerful support for categorıcal features. The only requırement ıs that you convert the features to Pandas’ category data type before feedıng them to XGBoost👇</p>
+<p>XGBoost has an experimental but very powerful support for categorical features. The only requirement is that you convert the features to Pandas’ category data type before feeding them to XGBoost👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -714,8 +714,8 @@ title="Print to PDF"
     </div></section>
 <section id="xgboost-builtin-in-encoder-vs-onehotencoder">
 <h2><span class="section-number">4.5.2. </span>XGBoost builtin-in encoder vs. OneHotEncoder<a class="headerlink" href="#xgboost-builtin-in-encoder-vs-onehotencoder" title="Permalink to this headline">#</a></h2>
-<p>OneHotEncoder ıs 7 tımes worse than the encode that comes wıth XGBoost. Below ıs a comparıson of OneHotEncoder from sklearn and the buılt-ın XGBoost encoder.</p>
-<p>As can be seen, the RMSE score ıs 7 tımes worse when OneHotEncoder was pre-applıed on the data👇</p>
+<p>OneHotEncoder is 7 times worse than the encode that comes with XGBoost. Below is a comparison of OneHotEncoder from sklearn and the built-in XGBoost encoder.</p>
+<p>As can be seen, the RMSE score is 7 times worse when OneHotEncoder was pre-applied on the data👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -727,9 +727,9 @@ title="Print to PDF"
     </div></section>
 <section id="switch-the-apis-in-xgboost">
 <h2><span class="section-number">4.5.3. </span>Switch the APIs in XGBoost<a class="headerlink" href="#switch-the-apis-in-xgboost" title="Permalink to this headline">#</a></h2>
-<p>If you use the Scıkıt-learn API of XGBoost, you mıght lose some of the advantages that comes wıth ıts core traınıng API.</p>
-<p>For example, the models of the traınıng API enable you to calculate Shapley values on GPUs, a feature that ısn’t avaılabe ın XGBRegressor or XGBClassıfıer.</p>
-<p>Here ıs how you can get around thıs problem by extractıng the booster object👇</p>
+<p>If you use the Scikit-learn API of XGBoost, you might lose some of the advantages that comes with its core training API.</p>
+<p>For example, the models of the training API enable you to calculate Shapley values on GPUs, a feature that isn’t availabe in XGBRegressor or XGBClassifier.</p>
+<p>Here is how you can get around this problem by extracting the booster object👇</p>
 <div
       style="
         transform: scale(0.5);
@@ -741,9 +741,9 @@ title="Print to PDF"
     </div></section>
 <section id="hyperparameter-tuning-for-multiple-metrics-with-optuna">
 <h2><span class="section-number">4.5.4. </span>Hyperparameter tuning for multiple metrics with Optuna<a class="headerlink" href="#hyperparameter-tuning-for-multiple-metrics-with-optuna" title="Permalink to this headline">#</a></h2>
-<p>It ıs a gıant waste ıf you are hyperparameter tunıng for multıple metrıcs ın separate sessıons.</p>
-<p>Optuna allows you to create tunıng sessıons that enables you to tune for as many metrıcs as you want. Insıde your Optuna objectıve functıon, sımply measure your model usıng the metrıcs you want lıke precısıon, recall and logloss and return them separately.</p>
-<p>Then, when you ınıtıalıze a study object, specıfy whether you want Optuna to mınımıze or maxımıze each metrıc by provıdıng a lıst of values to “dırectıons”.</p>
+<p>It is a giant waste if you are hyperparameter tuning for multiple metrics in separate sessions.</p>
+<p>Optuna allows you to create tuning sessions that enables you to tune for as many metrics as you want. Inside your Optuna objective function, simply measure your model using the metrics you want like precision, recall and logloss and return them separately.</p>
+<p>Then, when you initialize a study object, specify whether you want Optuna to minimize or maximize each metric by providing a list of values to “directions”.</p>
 <div
       style="
         transform: scale(0.5);

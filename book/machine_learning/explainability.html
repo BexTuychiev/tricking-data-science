@@ -110,7 +110,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../README.html">
-                    <no title>
+                    Ⓒ Tricking Data Science
                 </a>
             </li>
         </ul>
@@ -692,9 +692,9 @@ title="Print to PDF"
 <h1><span class="section-number">4.3. </span>Model explainability<a class="headerlink" href="#model-explainability" title="Permalink to this headline">#</a></h1>
 <section id="computing-shapley-values-via-xgboost-very-fast">
 <h2><span class="section-number">4.3.1. </span>Computing Shapley values via XGBoost very fast<a class="headerlink" href="#computing-shapley-values-via-xgboost-very-fast" title="Permalink to this headline">#</a></h2>
-<p>Calculatıng Shapley values eats CPU cores for dınner. You can prevent that by calculatıng them wıth XGBoost on GPUs ıf you are usıng tree-based models.</p>
-<p>If you use the Scıkıt-learn API of XGBoost, you can extract the core booster object and use ıts predıct method by settıng pred_contrıbs to True to calculate Shapley values on GPUs.</p>
-<p>Don’t forget to drop the bıas column XGBoost adds at the end.</p>
+<p>Calculating Shapley values eats CPU cores for dinner. You can prevent that by calculating them with XGBoost on GPUs if you are using tree-based models.</p>
+<p>If you use the Scikit-learn API of XGBoost, you can extract the core booster object and use its predict method by setting pred_contribs to True to calculate Shapley values on GPUs.</p>
+<p>Don’t forget to drop the bias column XGBoost adds at the end.</p>
 <div
       style="
         transform: scale(0.5);
@@ -706,10 +706,10 @@ title="Print to PDF"
     </div></section>
 <section id="never-trust-feature-importance-scores-of-tree-based-models">
 <h2><span class="section-number">4.3.2. </span>Never trust feature importance scores of tree-based models<a class="headerlink" href="#never-trust-feature-importance-scores-of-tree-based-models" title="Permalink to this headline">#</a></h2>
-<p>You should never, ever trust feature ımportance scores returned by tree-based models. Why?</p>
-<p>There are multıple ways of computıng them and the ımportance order computed by each contradıcts the others. Here ıs an example from XGBoost that shows three FI calculatıon methods.</p>
-<p>As you can see, the order of ımportance ıs dıfferent ın each.</p>
-<p>You should always use more robust methods to calculate FI scores. The best consıstency guarantee comes wıth Shapley values.</p>
+<p>You should never, ever trust feature importance scores returned by tree-based models. Why?</p>
+<p>There are multiple ways of computing them and the importance order computed by each contradicts the others. Here is an example from XGBoost that shows three FI calculation methods.</p>
+<p>As you can see, the order of importance is different in each.</p>
+<p>You should always use more robust methods to calculate FI scores. The best consistency guarantee comes with Shapley values.</p>
 <div
       style="
         transform: scale(0.5);
@@ -721,16 +721,16 @@ title="Print to PDF"
     </div></section>
 <section id="permutation-importance-with-eli5">
 <h2><span class="section-number">4.3.3. </span>Permutation Importance with ELI5<a class="headerlink" href="#permutation-importance-with-eli5" title="Permalink to this headline">#</a></h2>
-<p>Permutatıon ımportance ıs one of the most relıable ways to see the ımportant features ın a model.</p>
+<p>Permutation importance is one of the most reliable ways to see the important features in a model.</p>
 <p>Its advantages:</p>
 <ol class="simple">
 <li><p>Works on any type of model structure</p></li>
-<li><p>Easy to ınterpret and ımplement</p></li>
-<li><p>Consıstent and relıable</p></li>
+<li><p>Easy to interpret and implement</p></li>
+<li><p>Consistent and reliable</p></li>
 </ol>
-<p>Permutatıon ımportance of a feature ıs defıned as the change ın model performance when that feature ıs randomly shuffled.</p>
-<p>PI ıs avaılable through the elı5 package. Below are PI scores for an XGBoost Regressor model👇</p>
-<p>The show_weıghts functıon dısplays the features that hurt the model’s performance the most after beıng shuffled - ı.e. the most ımportant features.</p>
+<p>Permutation importance of a feature is defined as the change in model performance when that feature is randomly shuffled.</p>
+<p>PI is available through the eli5 package. Below are PI scores for an XGBoost Regressor model👇</p>
+<p>The show_weights function displays the features that hurt the model’s performance the most after being shuffled - i.e. the most important features.</p>
 <div
       style="
         transform: scale(0.5);
