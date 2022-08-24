@@ -1,8 +1,12 @@
+<div align="center">
+
 <a href="https://github.com/BexTuychiev/tricking-data-science">
 
 <img src="book/images/cover.png" alt="Tricking Data Science Book Logo" width="126" height="195" align="center">
 
 </a>
+
+</div>
 
 <div align="center">
     <h1 align="center">Tricking Data Science</h1>
