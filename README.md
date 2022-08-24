@@ -1,5 +1,17 @@
-# Tricking Data Science
+<div id="top"></div>
 
-![Tricking Data Science Logo](book/images/logo.png)
+<br />
+<div align="center">
+<h1 align="center">Tricking Data Science</h1>
 
-## Work in progress...
+  <p align="center">
+    Subtle tricks and gem resources for all things data, machine learning and deep learning. 
+  </p>
+</div>
+
+```{image} book/images/logo.png
+:alt: TDS Logo
+:width: 400px
+:height: 400px
+:align: center
+```
