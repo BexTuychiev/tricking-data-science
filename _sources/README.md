@@ -1,5 +1,5 @@
 # Tricking Data Science
 
-![Tricking Data Science Logo](book/images/logo.png)
+<img src="book/images/logo.png" width="400" height="400" alt="TDS Logo">
 
 ## Work in progress...
