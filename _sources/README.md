@@ -9,9 +9,4 @@
   </p>
 </div>
 
-```{image} book/images/logo.png
-:alt: TDS Logo
-:width: 400px
-:height: 400px
-:align: center
-```
+<img src="book/images/logo.png" width="400" height="400" align="center">
