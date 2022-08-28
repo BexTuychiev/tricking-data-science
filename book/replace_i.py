@@ -1,8 +1,6 @@
 from joblib import Parallel, delayed
 from rich.progress import track
-import json
 import glob
-import re
 
 
 def replace_i(notebook_path):
