@@ -1,7 +1,7 @@
 import jupyter_to_medium as jtm
 import os
 
-jtm.publish('weekly/10.august_8-14.ipynb',
+jtm.publish('tds/issue5.ipynb',
             integration_token=os.environ['TOKEN'],
             pub_name=None,
             title="",
