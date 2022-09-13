@@ -1,8 +1,12 @@
+<div align="center">
+
 <a href="https://github.com/BexTuychiev/tricking-data-science">
 
 <img src="book/images/cover.png" alt="Tricking Data Science Book Logo" width="126" height="195" align="center">
 
 </a>
+
+</div>
 
 <div align="center">
     <h1 align="center">Tricking Data Science</h1>
@@ -24,9 +28,7 @@
 It starts with my dislike of bookmarks. As a programmer, you often come across a neat
 little code trick on StackOverflow or blogs by some elite senior, and say, "Hey, I gotta
 save this." You bookmark the page, and a day later you forget the bookmark's name. A week
-later, you even forget that it existed in the first place. 
-
-<br>
+later, you even forget that it existed in the first place.
 
 But in your mind, you always have that fuzzy reference knowledge that there is some really
 cool way of doing this one task, but you can't really put your finger on it. All
@@ -49,14 +51,19 @@ that *right place* for many.
 
 <h2>Don't shy away...</h2>
 This is an open-source book, not an exclusive property of mine. If you have a trick or
-a resource of your own, create a pull request and give the great satisfaction of accepting
+a resource of your own, create a pull request and give me the great satisfaction of
+accepting
 my very first! With your permission, I will add the trick to the book using Snappify—the
 tool I used for those interactive code blocks and
 maybe share it on LinkedIn.
 
 <h2>About the author</h2>
 
+<div align="center">
+
 <img src="book/images/author.png" width="300" height="300" align="center" alt="The image of the author">
+
+</div>
 
 Here goes the semi-formal introduction of **ME** in the third person 😁
 
